@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+$main-background : #202020;
+$primary : #C28C59;
+$primary-100 : #9F8D7C;
+$light-color : #F9F9F9;
+
+body{
+    background-color: $main-background;
+    font-family: Arial, Helvetica, sans-serif;
+}

@@ -1,0 +1,22 @@
+@import "../styles.scss";
+
+#hideout-displayer{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+}
+
+.hideout-item{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid $primary;
+    padding: 0.5rem;
+    color: $light-color;
+    flex-basis: 200px;
+    cursor: pointer;
+
+}
