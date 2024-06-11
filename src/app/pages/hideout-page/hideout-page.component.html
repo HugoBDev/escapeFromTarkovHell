@@ -1,0 +1,17 @@
+<div id="hideout-displayer">
+    @for(item of hideoutItems ; track item ){
+      <div [routerLink]="['/station-details']" [ngClass]="isBuildable(item)? 'active-hideout-item' : 'disabled-hideout-item'  " (click)="getItem(item)">
+        @if(isBuildable(item)){
+          <div class="current-lvl">
+            {{item.currentStationLvl}}
+          </div>
+        }
+        <img [src]="item.imageLink" alt="">
+        <p>{{item.name}}</p>
+     
+      </div>
+     
+    }
+  </div>
+  
+  

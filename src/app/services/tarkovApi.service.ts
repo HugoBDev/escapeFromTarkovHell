@@ -8,7 +8,7 @@ import { HideoutItem } from '../models/hideout-item.model';
 export class tarkovApiService {
   private BASE_URL = 'https://api.tarkov.dev/graphql';
 
-  tarkovApi(itemName: string): Promise<any> {
+  getTarkovItem(itemName: string, itemId : string): Promise<any> {
     const query = gql`
     {
       items(name: "${itemName}") {
@@ -33,21 +33,17 @@ export class tarkovApiService {
         hideoutStations(lang :${lang}){
             id
             name
-            imageLink
-              
-            levels{
-              
+            imageLink          
+            levels{          
               level
               stationLevelRequirements{
                 station{
                   name
                 }
-                level
-                
+                level             
               }
               itemRequirements{
-                quantity
-                
+                quantity    
                   item{
                 name
                 iconLink

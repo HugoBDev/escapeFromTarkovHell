@@ -1,0 +1,47 @@
+@import "../../../styles.scss";
+
+#hideout-displayer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.hideout-item {
+  position: relative;
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.5rem;
+  flex-basis: 200px;
+}
+
+.disabled-hideout-item {
+  @extend .hideout-item;
+  border: 2px solid $primary-100;
+  color: #929292;
+  img {
+    opacity: 0.5;
+  }
+}
+
+.active-hideout-item {
+  @extend .hideout-item;
+  border: 2px solid $primary;
+  cursor: pointer;
+  color: $light-color;
+}
+
+.current-lvl {
+  position: absolute;
+  color: $dark-color;
+  top: 0;
+  left: 0;
+  text-align: center;
+  padding: 0.25rem;
+  background: $primary;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 0 0 8px 0;
+}
