@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { HideoutItem } from '../../models/hideout-item.model';
+import {
+  HideoutItem,
+  Item,
+  ItemRequirement,
+  Level,
+} from '../../models/hideout-item.model';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 
 @Component({
@@ -7,20 +12,33 @@ import { HideoutDetailService } from '../../services/hideout-detail.service';
   standalone: true,
   imports: [],
   templateUrl: './station-detail-page.component.html',
-  styleUrl: './station-detail-page.component.scss'
+  styleUrl: './station-detail-page.component.scss',
 })
 export class StationDetailPageComponent {
-stationDetail! : HideoutItem
+  stationDetail!: HideoutItem;
+  itemsRequired: ItemRequirement[] = [];
+  itemCart: ItemRequirement[] = [];
+  constructor(private hideoutDetailService: HideoutDetailService) {}
 
-constructor(private hideoutDetailService : HideoutDetailService){}
+  ngOnInit(): void {
+    this.stationDetail = this.hideoutDetailService.getSelectedItem();
+    this.itemsRequired =
+      this.stationDetail.levels[
+        this.stationDetail.currentStationLvl
+      ].itemRequirements;
+  }
 
-ngOnInit() :void {
-this.stationDetail = this.hideoutDetailService.getSelectedItem()
-this.stationDetail.levels.forEach((level) => {
-  
-  
-  console.log(level.itemRequirements[this.stationDetail.currentStationLvl]);
-  
-})
-}
+  addToCart(item: ItemRequirement) {
+    sessionStorage.setItem('testkey', JSON.stringify(item));
+    this.itemCart.push(item);
+    console.log(this.itemCart);
+    console.log(JSON.parse(sessionStorage.getItem('testkey')!));
+  }
+
+
+  addAllToCart() {
+    this.itemsRequired.forEach((item) => {
+      this.addToCart(item)
+    });
+  }
 }

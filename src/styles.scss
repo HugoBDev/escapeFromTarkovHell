@@ -13,3 +13,18 @@ body{
     background-color: $dark-color;
     font-family: Arial, Helvetica, sans-serif;
 }
+
+button{
+    background: $primary;
+    color: $dark-color;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    &:focus{
+        outline: none;
+    }
+    &:active{
+        background: $primary-100;
+    }
+
+}

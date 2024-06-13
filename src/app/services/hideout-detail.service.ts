@@ -16,4 +16,5 @@ export class HideoutDetailService {
   getSelectedItem(): HideoutItem{
     return this.selectedItem;
   }
+  
 }

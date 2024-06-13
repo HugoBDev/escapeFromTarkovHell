@@ -38,5 +38,22 @@
     width: 50rem;
     border: 1px solid $primary;
     color: $light-color;
+    .items{
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+    }
 }
+
+.shopping-list{
+    display: flex;
+}
+
+.shopped-item{
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+}
+
 

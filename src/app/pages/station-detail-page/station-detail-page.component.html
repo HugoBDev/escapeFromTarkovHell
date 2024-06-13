@@ -7,14 +7,28 @@
             <p>(Niveau :{{stationDetail.currentStationLvl}})</p>
         </div>
         <div class="item-required">
-            <p>{{stationDetail.name}} needs for next level : </p>
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
-            <p>TEST</p>
+           @for(item of itemsRequired ; track item){
+            <div class="items" (click)="addToCart(item)">
+              <img [src]=" item.item.iconLink" alt="">
+              {{ item.item.name}}
+              <p>x {{ item.quantity}}</p>
+            </div>
+           }
         </div>
+        <button (click)="addAllToCart()">Add all</button>
+    </div>
+
+    
+    <div class="item-cart item-required">
+        <div class="cart-header">
+            <p>Shopping list : </p>
+        </div>
+        @for(item of itemCart ; track item ){
+            <div class="shopped-item">
+                <img [src]="item.item.iconLink" alt="">
+                {{item.item.name}}
+                x{{item.quantity}}
+            </div>
+        }
     </div>
 </div>

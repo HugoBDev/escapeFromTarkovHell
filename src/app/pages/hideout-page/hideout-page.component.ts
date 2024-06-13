@@ -51,10 +51,12 @@ export class HideoutPageComponent {
   }
 
   //*------------------- Méthode permettant de récupérer un item et de le stocker---------------------//
+  
   getItem(item: HideoutItem) {
     this.hideoutDetailService.setSelectedItem(item);
     this.router.navigate(['/station-details']);
   }
+
   //*------------------------------------------------------------------------------------//
 
   isBuildable(station: HideoutItem): boolean {
