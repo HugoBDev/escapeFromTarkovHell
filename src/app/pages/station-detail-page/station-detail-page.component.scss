@@ -1,0 +1,42 @@
+@import "../../../styles.scss";
+
+
+#hideout-detail{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 30rem;
+    padding: 2rem;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  .hideout{
+    font-size: 1.5rem;
+    color: $primary-100;
+  }
+    img{
+        height: 64px;
+    }
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 2rem;
+    color: $light-color;
+}
+
+.item-required{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    width: 50rem;
+    border: 1px solid $primary;
+    color: $light-color;
+}
+

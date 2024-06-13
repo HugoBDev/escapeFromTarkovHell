@@ -16,7 +16,11 @@ constructor(private hideoutDetailService : HideoutDetailService){}
 
 ngOnInit() :void {
 this.stationDetail = this.hideoutDetailService.getSelectedItem()
-console.log(this.stationDetail);
-
+this.stationDetail.levels.forEach((level) => {
+  
+  
+  console.log(level.itemRequirements[this.stationDetail.currentStationLvl]);
+  
+})
 }
 }

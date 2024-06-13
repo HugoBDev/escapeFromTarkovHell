@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { Router, RouterLink, RouterModule, RouterOutlet } from '@angular/router';
+import {
+  Router,
+  RouterLink,
+  RouterModule,
+  RouterOutlet,
+} from '@angular/router';
 import { HideoutItem } from '../../models/hideout-item.model';
 import { tarkovApiService } from '../../services/tarkovApi.service';
 import { NgClass } from '@angular/common';
@@ -9,13 +14,17 @@ import { HideoutDetailService } from '../../services/hideout-detail.service';
   standalone: true,
   imports: [RouterLink, RouterModule, RouterOutlet, NgClass],
   templateUrl: './hideout-page.component.html',
-  styleUrl: './hideout-page.component.scss'
+  styleUrl: './hideout-page.component.scss',
 })
 export class HideoutPageComponent {
   hideoutItems: HideoutItem[] = [];
   showRequiredItem: boolean = false;
 
-  constructor(private tarkovApiService: tarkovApiService, private router : Router, private hideoutDetailService : HideoutDetailService) {}
+  constructor(
+    private tarkovApiService: tarkovApiService,
+    private router: Router,
+    private hideoutDetailService: HideoutDetailService
+  ) {}
   ngOnInit(): void {
     this.tarkovApiService
       .getHideoutStations()
@@ -37,14 +46,16 @@ export class HideoutPageComponent {
         );
         this.hideoutItems = [...buildableStations, ...notBuildableStations];
         //!------------------------------------------------------------------------------------//
-        
       })
       .catch((e) => console.error(e));
   }
+
+  //*------------------- Méthode permettant de récupérer un item et de le stocker---------------------//
   getItem(item: HideoutItem) {
-    this.hideoutDetailService.setSelectedItem(item)
-    this.router.navigate(['/station-details'])
+    this.hideoutDetailService.setSelectedItem(item);
+    this.router.navigate(['/station-details']);
   }
+  //*------------------------------------------------------------------------------------//
 
   isBuildable(station: HideoutItem): boolean {
     if (
