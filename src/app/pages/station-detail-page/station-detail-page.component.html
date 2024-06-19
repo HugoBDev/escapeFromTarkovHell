@@ -8,14 +8,14 @@
         </div>
         <div class="item-required">
            @for(item of itemsRequired ; track item){
-            <div class="items" (click)="addToCart(item)">
+            <div class="items" (click)="addToCart(item.item, item)">
               <img [src]=" item.item.iconLink" alt="">
               {{ item.item.name}}
               <p>x {{ item.quantity}}</p>
             </div>
            }
         </div>
-        <button (click)="addAllToCart()">Add all</button>
+        <!-- <button (click)="addAllToCart()">Add all</button> -->
     </div>
 
     

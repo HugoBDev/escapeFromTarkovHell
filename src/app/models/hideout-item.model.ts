@@ -16,11 +16,14 @@ export interface Level {
 }
 
 export interface ItemRequirement {
+    id: string ;
     quantity: number;
     item:     Item;
 }
 
 export interface Item {
+    id : string;
+    quantity : ItemRequirement["quantity"]
     name:     string;
     iconLink: string;
 }

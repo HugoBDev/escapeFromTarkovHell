@@ -26,19 +26,27 @@ export class StationDetailPageComponent {
       this.stationDetail.levels[
         this.stationDetail.currentStationLvl
       ].itemRequirements;
+      
+      
   }
 
-  addToCart(item: ItemRequirement) {
-    sessionStorage.setItem('testkey', JSON.stringify(item));
-    this.itemCart.push(item);
-    console.log(this.itemCart);
-    console.log(JSON.parse(sessionStorage.getItem('testkey')!));
-  }
-
-
-  addAllToCart() {
-    this.itemsRequired.forEach((item) => {
-      this.addToCart(item)
+  addToCart(item: Item, itemQuantity : ItemRequirement) {
+    =
+    item.quantity = itemQuantity.quantity
+    this.hideoutDetailService.addToCart(item).subscribe({
+      next: (response) => {
+        
+        console.log("l'objet à bien été ajouté au panier:", item);
+    
+      },
+      error: (e) =>
+        console.error("cette object n'a pas pu etre ajouté au panier:", e),
     });
   }
+
+  // addAllToCart() {
+  //   this.itemsRequired.forEach((item) => {
+  //     this.addToCart(item)
+  //   });
+  // }
 }

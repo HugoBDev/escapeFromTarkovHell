@@ -43,8 +43,10 @@ export class tarkovApiService {
                 level             
               }
               itemRequirements{
+                
                 quantity    
                   item{
+                    id
                 name
                 iconLink
                 
