@@ -46,7 +46,7 @@ export class tarkovApiService {
                 
                 quantity    
                   item{
-                    id
+                  
                 name
                 iconLink
                 

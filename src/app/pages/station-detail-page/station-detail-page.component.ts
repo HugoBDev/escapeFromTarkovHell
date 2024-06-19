@@ -31,7 +31,7 @@ export class StationDetailPageComponent {
   }
 
   addToCart(item: Item, itemQuantity : ItemRequirement) {
-    =
+    
     item.quantity = itemQuantity.quantity
     this.hideoutDetailService.addToCart(item).subscribe({
       next: (response) => {
