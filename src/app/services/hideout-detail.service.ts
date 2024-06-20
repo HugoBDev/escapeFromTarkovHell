@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HideoutItem, Item, ItemRequirement } from '../models/hideout-item.model';
-import { environnement } from '../../../env/env';
+import { HideoutItem, Item } from '../models/hideout-item.model';
+import { environnement } from '../../../.env/env';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class HideoutDetailService {
   private selectedItem! : HideoutItem ;
-  private backEndUrl = `${environnement.apiUrl}`
+  private itemApiUrl = environnement.apiUrl
 
   constructor(private http:HttpClient) { }
 
@@ -22,7 +22,7 @@ export class HideoutDetailService {
   }
 
   addToCart(item : Item) : Observable<any> {
-    return this.http.post<Item>(`${this.backEndUrl}`, item)
+    return this.http.post<Item>(`${this.itemApiUrl}/items`, item)
   }
 
   

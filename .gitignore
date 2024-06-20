@@ -5,7 +5,7 @@
 /tmp
 /out-tsc
 /bazel-out
-/env
+.env
 
 
 # Node
