@@ -28,6 +28,8 @@ export interface Item {
     iconLink: string;
 }
 
+
+
 export interface StationLevelRequirement {
     station: Station;
     level:   number;
@@ -36,3 +38,4 @@ export interface StationLevelRequirement {
 export interface Station {
     name: string;
 }
+

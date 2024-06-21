@@ -5,7 +5,7 @@ import {
   RouterModule,
   RouterOutlet,
 } from '@angular/router';
-import { HideoutItem } from '../../models/hideout-item.model';
+import { HideoutItem, Item } from '../../models/hideout-item.model';
 import { tarkovApiService } from '../../services/tarkovApi.service';
 import { NgClass } from '@angular/common';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
@@ -21,6 +21,7 @@ import { CartComponent } from '../../components/cart/cart.component';
 export class HideoutPageComponent {
   hideoutItems: HideoutItem[] = [];
   showRequiredItem: boolean = false;
+  cartItems : Item[] = []
 
   constructor(
     private tarkovApiService: tarkovApiService,
@@ -29,10 +30,16 @@ export class HideoutPageComponent {
   ) {}
 
   ngOnInit(): void {
+
+    
+  
+
+
+
     this.tarkovApiService
       .getHideoutStations()
       .then((data: HideoutItem) => {
-        console.log(data);
+       
 
         const hideoutStations = data.hideoutStations;
         hideoutStations.forEach((hideoutStations: any) => {
@@ -51,6 +58,8 @@ export class HideoutPageComponent {
         //!------------------------------------------------------------------------------------//
       })
       .catch((e) => console.error(e));
+
+
   }
 
   //*------------------- Méthode permettant de récupérer un item et de le stocker---------------------//

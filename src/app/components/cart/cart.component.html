@@ -8,6 +8,7 @@
                 <img [src]="item.iconLink" alt="">
                 {{item.name}}
                X{{item.quantity}}
+               <button (click)="deleteItem(item.id)">X</button>
             </div>
         }
         </div>
