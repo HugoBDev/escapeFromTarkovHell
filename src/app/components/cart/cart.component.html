@@ -1,0 +1,14 @@
+<div id="cart">
+    <div class="cart-header">
+        <p>Your cart</p>
+    </div>
+    <div class="items-display">
+            @for(item of items ; track item.id){
+            <div class="cart-item">
+                <img [src]="item.iconLink" alt="">
+                {{item.name}}
+               X{{item.quantity}}
+            </div>
+        }
+        </div>
+</div>

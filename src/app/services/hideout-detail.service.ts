@@ -25,5 +25,12 @@ export class HideoutDetailService {
     return this.http.post<Item>(`${this.itemApiUrl}/items`, item)
   }
 
-  
+  getCart() : Observable<any> {
+    return this.http.get(`${this.itemApiUrl}/items`)
+  }
+
+  deleteCartItem(id :string) : Observable<any> {
+    return this.http.delete(`${this.itemApiUrl}/items/${id}`)
+  }
+
 }

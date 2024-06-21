@@ -9,10 +9,12 @@ import { HideoutItem } from '../../models/hideout-item.model';
 import { tarkovApiService } from '../../services/tarkovApi.service';
 import { NgClass } from '@angular/common';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
+import { CartComponent } from '../../components/cart/cart.component';
+
 @Component({
   selector: 'app-hideout-page',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, NgClass],
+  imports: [RouterLink, RouterModule, RouterOutlet, NgClass, CartComponent],
   templateUrl: './hideout-page.component.html',
   styleUrl: './hideout-page.component.scss',
 })
@@ -25,6 +27,7 @@ export class HideoutPageComponent {
     private router: Router,
     private hideoutDetailService: HideoutDetailService
   ) {}
+
   ngOnInit(): void {
     this.tarkovApiService
       .getHideoutStations()

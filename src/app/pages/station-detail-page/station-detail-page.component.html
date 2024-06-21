@@ -15,20 +15,8 @@
             </div>
            }
         </div>
-        <!-- <button (click)="addAllToCart()">Add all</button> -->
+        <button (click)="showCart()">Show Cart</button>
     </div>
 
-    
-    <div class="item-cart item-required">
-        <div class="cart-header">
-            <p>Shopping list : </p>
-        </div>
-        @for(item of itemCart ; track item ){
-            <div class="shopped-item">
-                <img [src]="item.item.iconLink" alt="">
-                {{item.item.name}}
-                x{{item.quantity}}
-            </div>
-        }
-    </div>
-</div>
+    <app-cart [items]="itemCart"></app-cart>
+
