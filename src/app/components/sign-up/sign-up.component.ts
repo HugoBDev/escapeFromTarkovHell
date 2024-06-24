@@ -11,7 +11,7 @@ import { LoginService } from '../../services/login.service';
   styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
-
+//! Register: Première connexion
 
   constructor(private loginService: LoginService) {}
 
@@ -20,14 +20,14 @@ export class SignUpComponent {
     password: new FormControl(),
   });
 
-
-  onSubmit(){
-    this.loginService.login(this.signUpForm.value).subscribe({
-      next : (res) => {console.log(res);
+  onSubmit() {
+    this.loginService.createAccount(this.signUpForm.value).subscribe({
+      next: (res) => {
+        console.log(res);
       },
-      error : (e) => {console.error(e)
-        sessionStorage.setItem('tarkovToken', e.error.text)
-      }
-    })
+      error: (e) => {
+        console.error(e);
+      },
+    });
   }
 }

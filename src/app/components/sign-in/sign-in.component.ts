@@ -12,24 +12,21 @@ import { User } from '../../models/user.model';
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent {
+  //! Log in, j'ai déjà un compte
   constructor(private loginService: LoginService) {}
   signInForm: FormGroup = new FormGroup({
     email: new FormControl(),
     password: new FormControl(),
   });
 
-  onSubmit() {
-    const user: User = {
-      username: this.signInForm.get(['email'])?.value,
-      password: this.signInForm.get(['password'])?.value,
-    };
-    this.loginService.createAccount(user).subscribe({
-      next: (res) => {
-        console.log(res);
+
+  onSubmit(){
+    this.loginService.login(this.signInForm.value).subscribe({
+      next : (res) => {console.log(res);
       },
-      error: (e) => {
-        console.error(e);
-      },
-    });
+      error : (e) => {console.error(e)
+        sessionStorage.setItem('tarkovToken', e.error.text)
+      }
+    })
   }
 }
