@@ -1,0 +1,6 @@
+<h3>SIGN IN</h3>
+<form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+    <input formControlName="email" type="email">
+    <input formControlName="password" type="password">
+    <button type="submit" >Submit</button>
+  </form>
