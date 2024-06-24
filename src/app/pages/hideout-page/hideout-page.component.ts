@@ -11,6 +11,7 @@ import { NgClass } from '@angular/common';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { CartComponent } from '../../components/cart/cart.component';
 
+
 @Component({
   selector: 'app-hideout-page',
   standalone: true,
@@ -81,4 +82,5 @@ export class HideoutPageComponent {
       return true;
     }
   }
+
 }
