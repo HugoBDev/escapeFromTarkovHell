@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { SignInComponent } from '../../components/sign-in/sign-in.component';
-import { SignUpComponent } from '../../components/sign-up/sign-up.component';
+
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
   standalone: true,
-  imports: [SignInComponent, SignUpComponent],
+  imports: [ RouterOutlet],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })

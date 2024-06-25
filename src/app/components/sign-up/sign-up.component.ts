@@ -8,7 +8,7 @@ import { LoginService } from '../../services/login.service';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.scss',
+  styleUrls: ['./sign-up.component.scss','../sign-in/sign-in.component.scss']
 })
 export class SignUpComponent {
 //! Register: Première connexion

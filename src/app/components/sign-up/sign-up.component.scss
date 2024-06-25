@@ -1,0 +1,12 @@
+@import "../../../styles.scss";
+
+.checkbox-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  label{
+    color: $primary-050;
+    font-size: 12px;
+  }
+  
+}

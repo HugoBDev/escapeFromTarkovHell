@@ -1,0 +1,51 @@
+@import "../../../styles.scss";
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+  width: 300px;
+  a {
+    font-size: 12px;
+    color: $primary-100;
+  }
+
+  input[type="password"],
+  input[type="email"] {
+    width: -webkit-fill-available;
+    padding-left: 50px;
+  }
+}
+
+.form-input{
+  width: 100%;
+  position: relative;
+    &::before {
+      display: flex;
+      position: absolute;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 40px; 
+      margin-top: 1px;
+    }
+  
+
+    
+  }
+  .username::before{
+    content: url('../../../assets/user.svg');
+  }
+
+  .password::before{
+    content: url('../../../assets/key.svg');
+  }
+
+
+button {
+  width: 100%;
+  flex-grow: 1;
+  position: relative;
+  padding: 8px; /* Ajout d'un padding pour voir le pseudo-élément */
+}

@@ -1,6 +1,24 @@
-<h3>SIGN IN</h3>
 <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
-    <input formControlName="email" type="email">
-    <input formControlName="password" type="password">
-    <button type="submit" >Submit</button>
-  </form>
+  <div class="username form-input">
+    <input
+      placeholder="type your username"
+      class="username"
+      formControlName="username"
+      type="email"
+    />
+  </div>
+
+  <div class="password form-input">
+    <input
+      placeholder="type your password"
+      class="password"
+      formControlName="password"
+      type="password"
+    />
+  </div>
+
+  <a href="#">forgot password ?</a>
+  <button type="submit">Sign In</button>
+  <div class="divider"></div>
+  <button class="stealth" routerLink="register">Sign up</button>
+</form>

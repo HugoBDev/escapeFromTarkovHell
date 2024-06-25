@@ -1,33 +1,88 @@
 /* You can add global styles to this file, and also import other style files */
-$dark-color : #202020;
-$primary : #C28C59;
-$primary-100 : #9F8D7C;
-$light-color : #F9F9F9;
+$dark-color: #202020;
+$primary: #c28c59;
+$primary-100: #9f8d7c;
+$light-color: #f9f9f9;
+$primary-050: #e8be6b;
 
-
-*{
-    padding: 0;
-    margin : 0;
+* {
+  padding: 0;
+  margin: 0;
 }
-body{
-    background-color: $dark-color;
-    font-family: Arial, Helvetica, sans-serif;
+body {
+  background-color: $dark-color;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-button{
+button {
+  background: $primary;
+  color: $dark-color;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    background: $primary-100;
+  }
+  &.stealth {
+    background: none;
+    color: $primary-100;
+  }
+}
+
+input[type="password"],
+input[type="email"] {
+  border: 1px solid $primary;
+  background-color: $dark-color;
+  padding: 0.75rem;
+  color: $light-color;
+  &::placeholder {
+    color: $primary-100;
+    font-style: italic;
+  }
+
+
+  &:focus{
+    outline: none;
+    border: 1px solid $primary-050;
+  }
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+  appearance: none;
+  border: 3px solid $primary;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &::before {
+    content: "";
+    display: block;
+    height: 0.5rem;
+    width: 0.5rem;
     background: $primary;
-    color: $dark-color;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    &:focus{
-        outline: none;
-    }
-    &:active{
-        background: $primary-100;
-    }
-
+    opacity: 0;
+  }
+  &:checked::before {
+    opacity: 1;
+  }
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.divider {
+  height: 1px;
+  width: 100%;
+  background: $primary;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
