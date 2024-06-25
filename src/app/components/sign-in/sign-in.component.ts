@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { LoginPageComponent } from '../../pages/login-page/login-page.component';
 import { LoginService } from '../../services/login.service';
-import { User } from '../../models/user.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -15,18 +13,18 @@ export class SignInComponent {
   //! Log in, j'ai déjà un compte
   constructor(private loginService: LoginService) {}
   signInForm: FormGroup = new FormGroup({
-    email: new FormControl(),
+    username: new FormControl(),
     password: new FormControl(),
   });
 
 
   onSubmit(){
     this.loginService.login(this.signInForm.value).subscribe({
-      next : (res) => {console.log(res);
+      next : (res) => {
+        sessionStorage.setItem('tarkovToken', res.token)
+        console.log(res); 
       },
-      error : (e) => {console.error(e)
-        sessionStorage.setItem('tarkovToken', e.error.text)
-      }
+      error : (e) => {console.error(e)}
     })
   }
 }
