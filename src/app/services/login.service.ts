@@ -19,4 +19,15 @@ export class LoginService  {
     login(user : User) : Observable<any>{
         return this.http.post(`${this.BASE_URL}/auth/login`, user)
     }
+
+    isLogged(): boolean {
+        const isLogged = sessionStorage.getItem('tarkovToken');
+    
+        if (isLogged) {
+          return true;
+        } else {
+          console.log('veuillez vous connectez');
+          return false;
+        }
+      }
 }

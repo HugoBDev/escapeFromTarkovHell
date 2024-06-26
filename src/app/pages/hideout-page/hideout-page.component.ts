@@ -10,6 +10,7 @@ import { tarkovApiService } from '../../services/tarkovApi.service';
 import { NgClass } from '@angular/common';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { CartComponent } from '../../components/cart/cart.component';
+import { LoginService } from '../../services/login.service';
 
 
 @Component({
@@ -27,7 +28,8 @@ export class HideoutPageComponent {
   constructor(
     private tarkovApiService: tarkovApiService,
     private router: Router,
-    private hideoutDetailService: HideoutDetailService
+    private hideoutDetailService: HideoutDetailService,
+    private loginService : LoginService
   ) {}
 
   ngOnInit(): void {
@@ -66,8 +68,12 @@ export class HideoutPageComponent {
   //*------------------- Méthode permettant de récupérer un item et de le stocker---------------------//
   
   getItem(item: HideoutItem) {
-    this.hideoutDetailService.setSelectedItem(item);
-    this.router.navigate(['/station-details']);
+    if(this.loginService.isLogged()){
+      this.hideoutDetailService.setSelectedItem(item);
+      this.router.navigate(['/station-details']);
+    }else{
+      this.router.navigate(['/login'])
+    }
   }
 
   //*------------------------------------------------------------------------------------//

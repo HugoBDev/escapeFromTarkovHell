@@ -8,6 +8,7 @@ import { HideoutDetailService } from '../../services/hideout-detail.service';
 
 import { AsyncPipe } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-station-detail-page',
@@ -45,12 +46,14 @@ export class StationDetailPageComponent {
   }
 
   showCart() {
-    this.hideoutDetailService.getCart().subscribe({
-      next: (items) => {
-        this.itemCart = items;
-      },
-      error: (e) => console.error("Erreur lors de la récupération du panier:", e),
-    });
+    
+      this.hideoutDetailService.getCart().subscribe({
+        next: (items) => {
+          this.itemCart = items;
+        },
+        error: (e) => console.error("Erreur lors de la récupération du panier:", e),
+      });
+    
   }
 
   deleteItem(id: string) {
