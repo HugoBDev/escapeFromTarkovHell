@@ -1,0 +1,39 @@
+<div id="navbar">
+    @if(false){
+        <div>
+            Tarkov's Hell
+        </div>
+        <div>
+            <button class="sign-in">Sign in</button>
+            <button class="stealth">Sign up</button>
+        </div>
+    }@else {
+        <div>
+            @for(page of menuPages ; track page){
+                <button class="stealth active-menu">{{page | titlecase}}</button>
+                <div class="vertical-divider"></div>
+            }
+        </div>
+        <div>
+            <div>monmail&#64;mail.fr</div>
+            <button>Logout</button>
+        </div>
+    }
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

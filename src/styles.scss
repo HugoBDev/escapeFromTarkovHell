@@ -2,8 +2,9 @@
 $dark-color: #202020;
 $primary: #c28c59;
 $primary-100: #9f8d7c;
-$light-color: #f9f9f9;
 $primary-050: #e8be6b;
+$light-color: #E5D6C8;
+
 
 * {
   padding: 0;
@@ -19,6 +20,8 @@ button {
   color: $dark-color;
   border: none;
   padding: 0.5rem 1rem;
+  position: relative;
+  font-weight: 400;
   cursor: pointer;
   &:focus {
     outline: none;
@@ -29,6 +32,23 @@ button {
   &.stealth {
     background: none;
     color: $primary-100;
+  }
+  &.sign-in{
+    padding-right: 40px;
+    color: $light-color;
+    font-weight: 600;
+    &::after{
+      content : url('./assets/signIn.svg');
+      display : flex ; 
+      position: absolute;
+
+      top: 50%;
+      transform: translateY(-50%);
+
+      right: 0.5rem;
+      height: 24px;
+      width: 24px;
+    }
   }
 }
 
@@ -86,3 +106,5 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+

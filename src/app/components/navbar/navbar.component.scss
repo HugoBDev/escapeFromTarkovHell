@@ -1,0 +1,36 @@
+@import '../../../styles.scss';
+
+#navbar{
+    
+    border: 1px solid $primary;
+    padding: 8px;
+    color: $primary-100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    div{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+    .vertical-divider{
+        height: 16px;
+        background: $primary-100;
+        width: 1px;
+        &:last-child{
+            display: none;
+        }
+    }
+
+    .active-menu{
+        color: $light-color;
+        font-weight: 700;
+    }
+}
+
+
+
+
+
+
