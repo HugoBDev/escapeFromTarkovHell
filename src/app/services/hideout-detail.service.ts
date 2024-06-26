@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { HideoutItem, Item } from '../models/hideout-item.model';
 import { environnement } from '../../../.env/env';
 import { LoginService } from './login.service';
@@ -65,6 +65,18 @@ export class HideoutDetailService {
           (item) => item.id !== id
         );
         this.cartItemsSubject.next(currentItems);
+      })
+    );
+  }
+
+  clearCart(): Observable<any> {
+    return this.http.delete(`${this.itemApiUrl}/items`).pipe(
+      tap(() => {
+        this.cartItemsSubject.next([]); // Réinitialiser le cartItemsSubject à un tableau vide
+      }),
+      catchError((error) => {
+        console.error('Erreur lors de la suppression du panier:', error);
+        return throwError(() => error);
       })
     );
   }

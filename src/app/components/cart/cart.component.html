@@ -1,15 +1,16 @@
 <div id="cart">
-    <div class="cart-header">
-        <p>Your cart</p>
+  <div class="cart-header">
+    <p>Your cart</p>
+  </div>
+  <div class="items-display">
+    @for(item of items ; track item.id){
+    <div class="cart-item">
+      <img [src]="item.iconLink" alt="" />
+      {{ item.name }}
+      X{{ item.quantity }}
+      <button (click)="deleteItem(item.id)">X</button>
     </div>
-    <div class="items-display">
-            @for(item of items ; track item.id){
-            <div class="cart-item">
-                <img [src]="item.iconLink" alt="">
-                {{item.name}}
-               X{{item.quantity}}
-               <button (click)="deleteItem(item.id)">X</button>
-            </div>
-        }
-        </div>
+    }
+  </div>
+  <button (click)="deleteAll()">Clear Cart</button>
 </div>

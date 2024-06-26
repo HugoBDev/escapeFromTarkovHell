@@ -34,4 +34,15 @@ export class CartComponent {
     });
   }
 
+  deleteAll(){
+    this.hideoutDetailService.clearCart().subscribe({
+      next : (res) => {
+        console.log('la liste à été clear');
+        
+      },
+      error : (e) => console.error(e)
+      
+    })
+  }
+
 }

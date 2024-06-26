@@ -37,6 +37,12 @@ export class StationDetailPageComponent {
     item.quantity = itemQuantity.quantity;
     this.hideoutDetailService.addToCart(item).subscribe({
       next: (response) => {
+        const tarkovItem : Item = {
+          id: '',
+          quantity: 0,
+          name: '',
+          iconLink: ''
+        }
         console.log("l'objet à bien été ajouté au panier:", item);
         this.showCart()
       },
