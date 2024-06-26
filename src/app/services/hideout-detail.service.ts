@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { HideoutItem, Item } from '../models/hideout-item.model';
@@ -17,7 +17,9 @@ export class HideoutDetailService {
   >([]);
   cartItems$: Observable<Item[]> = this.cartItemsSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+
+  constructor(private http: HttpClient, private loginService : LoginService) {
+    
     this.loadInitialCart();
   }
 
@@ -42,7 +44,12 @@ export class HideoutDetailService {
   }
   //*Ici j'ajoute à la DB les Item puis je met à jour directement grave au BehaviorSubject
   addToCart(item: Item): Observable<Item> {
-    return this.http.post<Item>(`${this.itemApiUrl}/items`, item).pipe(
+    const token = this.loginService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+  
+    return this.http.post<Item>(`${this.itemApiUrl}/items`, item, { headers }).pipe(
       tap((newItem) => {
         const currentItems = this.cartItemsSubject.value;
         this.cartItemsSubject.next([...currentItems, newItem]);
