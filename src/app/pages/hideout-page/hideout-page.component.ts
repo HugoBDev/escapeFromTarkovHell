@@ -88,5 +88,4 @@ export class HideoutPageComponent {
       return true;
     }
   }
-
 }

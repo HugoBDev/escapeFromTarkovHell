@@ -44,12 +44,9 @@ export class HideoutDetailService {
   }
   //*Ici j'ajoute à la DB les Item puis je met à jour directement grave au BehaviorSubject
   addToCart(item: Item): Observable<Item> {
-    const token = this.loginService.getToken();
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
   
-    return this.http.post<Item>(`${this.itemApiUrl}/items`, item, { headers }).pipe(
+  
+    return this.http.post<Item>(`${this.itemApiUrl}/items`, item).pipe(
       tap((newItem) => {
         const currentItems = this.cartItemsSubject.value;
         this.cartItemsSubject.next([...currentItems, newItem]);

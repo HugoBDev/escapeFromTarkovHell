@@ -39,5 +39,4 @@ export class LoginService {
       return 'pas de token ici ';
     }
   }
-  
 }
