@@ -6,8 +6,10 @@
   <div id="cart-wrapper" [ngClass]="items.length === 0 ? 'centered' : ''">
     @if (items.length === 0) {
     <div id="placeholder">no item in the shopping list</div>
-    } @else { @for(item of items ; track item){
-    <app-cart-item (deleteClick)="deleteItem(item.id)"></app-cart-item>
-    } }
+    } @else { 
+      @for(item of items ; track item){
+        <app-cart-item [item]="item" (deleteClick)="deleteItem(item.id)"></app-cart-item>
+      } 
+    }
   </div>
 </div>

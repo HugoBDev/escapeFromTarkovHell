@@ -42,11 +42,13 @@
     border: 1px solid $primary;
     background: $dark-color;
     min-height: 200px;
+    gap: 8px;
     animation: light-up 1s ease-in-out forwards;
     #placeholder {
       font-style: italic;
       color: $primary-100;
     }
+
   }
 
   @keyframes light-up {

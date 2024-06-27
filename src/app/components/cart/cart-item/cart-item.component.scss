@@ -1,0 +1,31 @@
+@import '../../../../styles.scss';
+
+#cart-item{
+    padding: 8px 16px;
+    display: flex;
+    gap: 8px;
+    color: $light-color;
+    p{
+        font-weight: 800;
+        min-width: 40px;
+    }
+    div{
+        flex-grow: 1;
+
+        #goal{
+            font-size: 12px;
+            color: $primary-100;
+        }
+    }
+
+    #found-btn{
+        align-self: center;
+        height: 32px;
+    }
+
+
+    &:hover{
+        background-color: #9f8d7c23 ;
+    }
+
+}

@@ -30,21 +30,19 @@ export class CartComponent {
   deleteItem(id: string) {
     this.hideoutDetailService.deleteCartItem(id).subscribe({
       next: (res) => {
-        console.log("L'item " + id + " a bien été retiré:", res);
+        console.log("L'item " + id + ' a bien été retiré:', res);
       },
-      error: (e) => console.error("Erreur lors de la suppression de l'item:", e)
+      error: (e) =>
+        console.error("Erreur lors de la suppression de l'item:", e),
     });
   }
 
-  deleteAll(){
+  deleteAll() {
     this.hideoutDetailService.clearCart().subscribe({
-      next : (res) => {
+      next: (res) => {
         console.log('la liste à été clear');
-        
       },
-      error : (e) => console.error(e)
-      
-    })
+      error: (e) => console.error(e),
+    });
   }
-
 }
