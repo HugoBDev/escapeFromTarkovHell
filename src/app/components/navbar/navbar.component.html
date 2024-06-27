@@ -1,5 +1,5 @@
 <div id="navbar">
-    @if(false){
+    @if(logged){
         <div>
             Tarkov's Hell
         </div>
@@ -16,7 +16,7 @@
         </div>
         <div>
             <div>monmail&#64;mail.fr</div>
-            <button>Logout</button>
+            <button (click)="logout()">Logout</button>
         </div>
     }
     

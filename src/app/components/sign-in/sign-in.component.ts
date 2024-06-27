@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-sign-in',
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class SignInComponent {
   //! Log in, j'ai déjà un compte
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router : Router) {}
   signInForm: FormGroup = new FormGroup({
     username: new FormControl(),
     password: new FormControl(),
@@ -24,6 +24,8 @@ export class SignInComponent {
       next : (res) => {
         sessionStorage.setItem('tarkovToken', res.token)
         console.log(res); 
+        this.router.navigate([''])
+      
       },
       error : (e) => {console.error(e)}
     })

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { LoginService } from '../../services/login.service';
 export class SignUpComponent {
 //! Register: Première connexion
 
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private router : Router) {}
 
   signUpForm: FormGroup = new FormGroup({
     username: new FormControl(),
@@ -24,6 +25,8 @@ export class SignUpComponent {
     this.loginService.createAccount(this.signUpForm.value).subscribe({
       next: (res) => {
         console.log(res);
+        this.router.navigate([''])
+       
       },
       error: (e) => {
         console.error(e);

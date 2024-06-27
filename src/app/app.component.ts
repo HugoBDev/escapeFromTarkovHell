@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { HideoutItem } from './models/hideout-item.model';
-import { tarkovApiService } from './services/tarkovApi.service';
+
 import { NgClass } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
