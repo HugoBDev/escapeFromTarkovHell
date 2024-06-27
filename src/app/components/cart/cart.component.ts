@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Item } from '../../models/hideout-item.model';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
+import { NgClass } from '@angular/common';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [NgClass, CartItemComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
