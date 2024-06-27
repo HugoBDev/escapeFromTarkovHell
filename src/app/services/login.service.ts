@@ -2,23 +2,48 @@ import { Injectable } from '@angular/core';
 import { environnement } from '../../../.env/env';
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  catchError,
+  map,
+  of,
+  switchMap,
+  tap,
+} from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor(private http: HttpClient,private router : Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
   BASE_URL = environnement.apiUrl;
- 
+  public userLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    false
+  );
 
   createAccount(user: User): Observable<any> {
     return this.http.post(`${this.BASE_URL}/user`, user);
   }
 
-  login(user: User): Observable<any> {
+  getToken(user: User): Observable<any> {
     return this.http.post(`${this.BASE_URL}/auth/login`, user);
+  }
+
+  login(user: User) {
+    this.getToken(user).subscribe({
+      next: (res) => {
+        sessionStorage.setItem('tarkovToken', res.token);
+        this.getUserStatus().subscribe({
+          next: () => {
+            this.router.navigate(['']), console.log('login complete');
+            this.userLogged.next(true)
+          },
+          error: (e) => console.error(e),
+        });
+      },
+    });
   }
 
   isLogged(): boolean {
@@ -32,20 +57,27 @@ export class LoginService {
     }
   }
 
-  getToken(): string {
-    const token = sessionStorage.getItem('tarkovToken');
-    console.log('Token:', token); // Ajoutez ce log
-    if (token) {
-      return token;
-    } else {
-      return 'pas de token ici ';
+  logout() {
+    sessionStorage.clear();
+    this.userLogged.next(false);
+    this.router.navigate(['/login']);
+  }
+
+  getUserData() : any{
+    const tarkovUserData =  sessionStorage.getItem('tarkovUser')
+    if(tarkovUserData){
+      return JSON.parse(tarkovUserData)
+    }else {
+      throw new Error('Aucun utilisateur n\'est connecté')
     }
   }
 
-  logout(){
-    sessionStorage.clear()
-    this.router.navigate(['/login'])
-   
-    
+  getUserStatus(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}/auth/status`).pipe(
+      map((res: any) => {
+        console.log(res.id);
+        sessionStorage.setItem('tarkovUser', JSON.stringify(res));
+      })
+    );
   }
 }

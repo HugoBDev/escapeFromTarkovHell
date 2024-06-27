@@ -49,7 +49,6 @@ export class tarkovApiService {
                 id
                 name
                 iconLink
-                
               }
               }
             }

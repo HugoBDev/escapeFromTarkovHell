@@ -5,10 +5,8 @@ import {
   ItemRequirement,
 } from '../../models/hideout-item.model';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
-
 import { AsyncPipe } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
-import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-station-detail-page',
@@ -37,13 +35,7 @@ export class StationDetailPageComponent {
     item.quantity = itemQuantity.quantity;
     this.hideoutDetailService.addToCart(item).subscribe({
       next: (response) => {
-        const tarkovItem : Item = {
-          id: '',
-          quantity: 0,
-          name: '',
-          iconLink: ''
-        }
-        console.log("l'objet à bien été ajouté au panier:", item);
+     console.log("l'objet à bien été ajouté au panier:", item);
         this.showCart()
       },
       error: (e) =>

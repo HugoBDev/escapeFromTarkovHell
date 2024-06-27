@@ -33,7 +33,7 @@ export class HideoutPageComponent {
   ) {}
 
   ngOnInit(): void {
-
+   
     
   
 

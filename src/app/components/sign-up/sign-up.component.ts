@@ -25,8 +25,8 @@ export class SignUpComponent {
     this.loginService.createAccount(this.signUpForm.value).subscribe({
       next: (res) => {
         console.log(res);
+        this.loginService.login(res)
         this.router.navigate([''])
-       
       },
       error: (e) => {
         console.error(e);

@@ -1,21 +1,21 @@
 <div id="navbar">
-    @if(logged){
+    @if(!(isLogged | async)){
         <div>
             Tarkov's Hell
         </div>
         <div>
-            <button class="sign-in">Sign in</button>
-            <button class="stealth">Sign up</button>
+            <button class="sign-in" routerLink="/login">Sign in</button>
+            <button class="stealth"routerLink="/login/register">Sign up</button>
         </div>
     }@else {
         <div>
             @for(page of menuPages ; track page){
-                <button class="stealth active-menu">{{page | titlecase}}</button>
+                <button class="stealth active-menu" [routerLink]='page'>{{page | titlecase}}</button>
                 <div class="vertical-divider"></div>
             }
         </div>
         <div>
-            <div>monmail&#64;mail.fr</div>
+            <div>{{tarkovUserName}}</div>
             <button (click)="logout()">Logout</button>
         </div>
     }
