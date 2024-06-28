@@ -53,10 +53,10 @@
 
   @keyframes light-up {
     0% {
-      filter: drop-shadow(0 0 16px #e8be6b02);
+      filter: drop-shadow(0 0 16px #e8be6b00);
     }
     100% {
-      filter: drop-shadow(8px 0px 24px #e8be6b21);
+      filter: drop-shadow(0 8px 24px #e8be6b13);
     }
   }
 }

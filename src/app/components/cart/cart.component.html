@@ -8,7 +8,7 @@
     <div id="placeholder">no item in the shopping list</div>
     } @else { 
       @for(item of items ; track item){
-        <app-cart-item [item]="item" (deleteClick)="deleteItem(item.id)"></app-cart-item>
+        <app-cart-item [item]="item"></app-cart-item>
       } 
     }
   </div>
