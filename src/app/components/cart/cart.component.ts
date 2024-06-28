@@ -1,11 +1,13 @@
 import { Component, Input } from '@angular/core';
 import { Item } from '../../models/hideout-item.model';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
+import { NgClass } from '@angular/common';
+import { CartItemComponent } from './cart-item/cart-item.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [],
+  imports: [NgClass, CartItemComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
@@ -28,21 +30,19 @@ export class CartComponent {
   deleteItem(id: string) {
     this.hideoutDetailService.deleteCartItem(id).subscribe({
       next: (res) => {
-        console.log("L'item " + id + " a bien été retiré:", res);
+        console.log("L'item " + id + ' a bien été retiré:', res);
       },
-      error: (e) => console.error("Erreur lors de la suppression de l'item:", e)
+      error: (e) =>
+        console.error("Erreur lors de la suppression de l'item:", e),
     });
   }
 
-  deleteAll(){
+  deleteAll() {
     this.hideoutDetailService.clearCart().subscribe({
-      next : (res) => {
+      next: (res) => {
         console.log('la liste à été clear');
-        
       },
-      error : (e) => console.error(e)
-      
-    })
+      error: (e) => console.error(e),
+    });
   }
-
 }

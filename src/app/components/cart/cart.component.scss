@@ -1,22 +1,62 @@
 @import "../../../styles.scss";
 
+#cart,
+#cart-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 
 #cart {
-    border: $primary 1px solid;
-    width:20rem;
-    min-height:30rem ;
-    .cart-header{
-        border:$primary 1px solid ;
-        color: $primary-100;
-        font-size: 2rem;
+  min-width: 340px;
+  gap: 8px;
+  #cart-header {
+    display: flex;
+
+    div,
+    button {
+      height: 32px;
     }
-    .items-display{
-        .cart-item{
-            display: flex;
-            align-items: center;
-            gap: 0.25rem;
-            padding: 0.5rem;
-            color: $light-color;
-        }
+
+    div {
+      display: flex;
+      align-items: center;
+      padding-left: 8px;
+      flex-grow: 1;
+      font-weight: 800;
+      color: $dark-color;
+      background: $primary;
     }
+
+    button {
+      padding-right: 0;
+      padding-left: 60px;
+    }
+  }
+
+  .centered {
+    align-items: center;
+    justify-content: center;
+  }
+
+  #cart-wrapper {
+    border: 1px solid $primary;
+    background: $dark-color;
+    min-height: 200px;
+    gap: 8px;
+    animation: light-up 1s ease-in-out forwards;
+    #placeholder {
+      font-style: italic;
+      color: $primary-100;
+    }
+
+  }
+
+  @keyframes light-up {
+    0% {
+      filter: drop-shadow(0 0 16px #e8be6b00);
+    }
+    100% {
+      filter: drop-shadow(0 8px 24px #e8be6b13);
+    }
+  }
 }

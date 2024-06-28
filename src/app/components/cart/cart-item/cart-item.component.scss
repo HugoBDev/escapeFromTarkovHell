@@ -1,0 +1,117 @@
+@import "../../../../styles.scss";
+
+#cart-item {
+  overflow: hidden;
+  #cart-wrapper {
+    padding: 8px 16px;
+    display: flex;
+    gap: 8px;
+    color: $light-color;
+    p {
+      font-weight: 800;
+      min-width: 40px;
+    }
+    div {
+      flex-grow: 1;
+
+      #name {
+        position: relative;
+        width:fit-content;
+
+        span{
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 2px;
+            background: $light-color;
+        }
+      }
+
+      #goal {
+        font-size: 12px;
+        color: $primary-100;
+      }
+    }
+
+    #found-btn {
+      align-self: center;
+      height: 32px;
+      position: relative;
+      overflow: hidden;
+      &::before {
+        content: "FOUND";
+        text-transform: uppercase;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        width: 100%;
+        height: 32px;
+        top: -32px;
+        left: 0;
+        background: $primary-050;
+        transition: all ease-out 100ms;
+      }
+
+      &:hover {
+        &::before {
+          top: 0px;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    background-color: #9f8d7c23;
+  }
+}
+
+.deleted {
+  animation: slideRight 0.5s ease-out forwards;
+}
+
+.deleted-delay {
+  animation: slideRight 0.5s 0.5s ease-out forwards;
+}
+
+.delete-error{
+    //TODO: faire une class pour informé que le delete n'a aps focntionné.
+    background-color: rgba(255, 81, 0, 0.164);
+}
+
+.cross-out {
+  animation: cross-out 0.5s ease-out forwards;
+}
+
+.item-name-found{
+    animation: color-swap 0.25s ease-out forwards;
+}
+
+@keyframes slideRight {
+  0% {
+    padding-left: 8px;
+  }
+  100% {
+    padding-left: 100%;
+  }
+}
+
+@keyframes color-swap {
+    0%{
+        color: $light-color;
+    }
+    100%{
+        color: $primary-100;
+    }
+}
+
+@keyframes cross-out {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
