@@ -1,0 +1,62 @@
+@import '../../../../styles.scss';
+
+#station-item-tooltip{
+    border: 1px solid $primary;
+    padding: 8px;
+    max-width: 250px;
+    flex-wrap: wrap;
+    background: $dark-color;
+    position: absolute;
+    top: 0;
+    transform: translate(-50%,-100%);
+z-index: 10;
+
+    .requiered-item, img{
+        height: 48px;
+        width: 48px;
+    }
+    
+    .requiered-item{
+        position: relative;
+        span{
+            position: absolute;
+            z-index: 1;
+            left: 0;
+        }
+        opacity: 0.6;
+
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+
+.show-tooltip{
+    // background: hotpink !important;
+    display: flex;
+    animation: slideUp 300ms ease-in forwards;
+}
+
+.hide-tooltip{
+    display: none;
+    // background: green !important; 
+    animation: slideUp 50ms ease-in backwards;
+}
+
+@keyframes slideUp {
+    0%{
+      top: 40px;
+      filter: drop-shadow(0 0 32px $dark-color);
+      opacity: 0;
+      
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+      top: 0;
+      opacity: 1;
+      filter: drop-shadow(0 0 32px $dark-color);
+  
+    }
+  }
