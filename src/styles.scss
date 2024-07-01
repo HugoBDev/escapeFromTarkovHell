@@ -3,8 +3,7 @@ $dark-color: #202020;
 $primary: #c28c59;
 $primary-100: #9f8d7c;
 $primary-050: #e8be6b;
-$light-color: #E5D6C8;
-
+$light-color: #e5d6c8;
 
 //  TAILLE DE L'ECRAN EN <= à 360px
 
@@ -35,13 +34,13 @@ button {
     background: none;
     color: $primary-100;
   }
-  &.sign-in{
+  &.sign-in {
     padding-right: 40px;
     color: $light-color;
     font-weight: 600;
-    &::after{
-      content : url('./assets/signIn.svg');
-      display : flex ; 
+    &::after {
+      content: url("./assets/signIn.svg");
+      display: flex;
       position: absolute;
 
       top: 50%;
@@ -65,8 +64,7 @@ input[type="email"] {
     font-style: italic;
   }
 
-
-  &:focus{
+  &:focus {
     outline: none;
     border: 1px solid $primary-050;
   }
@@ -98,23 +96,30 @@ input[type="checkbox"] {
   display: flex;
   gap: 1rem;
   align-items: center;
-  label{
+  label {
     color: $primary-050;
     font-size: 12px;
   }
-  
 }
 
-
-.page{
+.page {
   display: flex;
+  flex-direction: column;
   gap: 16px;
-  .header-page{
+  .header-page {
     color: $light-color;
+    display: flex;
+    flex-direction: column;
     align-self: flex-start;
-    .divider{
-      margin-top: 16px;
+    gap: 8px;
+    .divider {
+      margin: 16px 0 40px 0;
     }
+  }
+  
+  .content-page {
+    gap: 16px;
+    display: flex;
   }
 }
 
@@ -135,49 +140,54 @@ body {
 }
 
 //  TAILLE DE L'ECRAN >= 360px
-@media screen and (max-width: 361px){
-  .page{
-    background: hotpink;
-    flex-direction: column;
+@media screen and (max-width: 361px) {
+  .page {
+    // background: hotpink;
+    .content-page {
+      flex-direction: column;
+    }
   }
 }
 
 //  TAILLE DE L'ECRAN ENTRE 361px et 600px
-@media screen and (min-width: 361px) and (max-width:600px){
-  .page{
-    // background: yellow; 
-    flex-direction: column;
+@media screen and (min-width: 361px) and (max-width: 600px) {
+  .page {
+    display: flex;
+    // background: yellow;
+    .content-page {
+      flex-direction: column;
+    }
   }
 }
 
 //  TAILLE DE L'ECRAN ENTRE 601px et 900px
-@media screen and (min-width: 601px) and (max-width:900px){
-  .page{
-    background: rgb(0, 255, 0);
+@media screen and (min-width: 601px) and (max-width: 900px) {
+  .page {
+    // background: rgb(0, 255, 0);
+    .content-page {
+      flex-direction: column;
+    }
   }
 }
 
 //  TAILLE DE L'ECRAN ENTRE 901px et 900px
-@media screen and (min-width: 901px) and (max-width:1200px){
-  .page{
-    background: rgb(0, 255, 0);
-    flex-direction: row;
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .page {
+    // background: rgb(0, 204, 255);
   }
 }
 
 //  TAILLE DE L'ECRAN ENTRE 1201px et 1920px
-@media screen and (min-width: 1201px) and (max-width:1920px){
-  .page{
-    background: rgb(255, 191, 0);
-    flex-direction: row;
+@media screen and (min-width: 1201px) and (max-width: 1920px) {
+  .page {
+    width: 1000px;
   }
 }
 
 //  TAILLE DE L'ECRAN au dessus de 1920px
-@media screen and (min-width: 1920px){
-  .page{
-    background: rgb(255, 0, 81);
-    flex-direction: row;
+@media screen and (min-width: 1920px) {
+  .page {
+    // background: rgb(255, 0, 81);
+    width: 1200px;
   }
 }
-

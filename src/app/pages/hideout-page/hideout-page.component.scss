@@ -18,7 +18,7 @@
     align-items: center;
     flex-direction: column;
     padding: 0.5rem;
-    flex-basis: 200px;
+    flex-basis: 150px;
   }
 
   .disabled-hideout-item {
@@ -49,5 +49,29 @@
     width: 1rem;
     height: 1rem;
     border-radius: 0 0 8px 0;
+  }
+
+}
+
+
+@media screen and (min-width: 901px){
+  .page{
+    .content-page{
+      app-cart{
+        min-width: 500px;
+        flex-grow: 1;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .page{
+    .content-page{
+      app-cart{
+        min-width: 400px;
+        flex-grow: 1;
+      }
+    }
   }
 }
