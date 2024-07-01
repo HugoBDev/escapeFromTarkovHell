@@ -11,12 +11,13 @@ import { NgClass } from '@angular/common';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { CartComponent } from '../../components/cart/cart.component';
 import { LoginService } from '../../services/login.service';
+import { HideoutStationItemComponent } from '../../components/hideout-station-item/hideout-station-item.component';
 
 
 @Component({
   selector: 'app-hideout-page',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, NgClass, CartComponent],
+  imports: [RouterLink, RouterModule, RouterOutlet, NgClass, CartComponent, HideoutStationItemComponent],
   templateUrl: './hideout-page.component.html',
   styleUrl: './hideout-page.component.scss',
 })
@@ -67,14 +68,6 @@ export class HideoutPageComponent {
 
   //*------------------- Méthode permettant de récupérer un item et de le stocker---------------------//
   
-  getItem(item: HideoutItem) {
-    if(this.loginService.isLogged()){
-      this.hideoutDetailService.setSelectedItem(item);
-      this.router.navigate(['/station-details']);
-    }else{
-      this.router.navigate(['/login'])
-    }
-  }
 
   //*------------------------------------------------------------------------------------//
 
@@ -88,4 +81,5 @@ export class HideoutPageComponent {
       return true;
     }
   }
+
 }
