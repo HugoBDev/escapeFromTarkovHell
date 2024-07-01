@@ -1,19 +1,36 @@
-<div id="hideout-displayer">
+<div class="page">
+
+  <div class="header-page">
+    <h2>Hidout</h2>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, praesentium voluptate itaque beatae quam
+      consequatur alias mollitia amet vitae officiis. Magni autem suscipit id! Nemo recusandae at explicabo, officia
+      aperiam non veritatis optio repudiandae quam expedita accusamus quas, nobis odit!</p>
+    <div class="divider"></div>
+  </div>
+
+  <div class="filter-wrapper">
+    <div class="checkbox-wrapper">
+      <input type="checkbox" name="hide-lock" id="hide-lock">
+      <label for="hide-lock">hide locked stations</label>
+    </div>
+
+  </div>
+
+  <div id="hideout-displayer">
     @for(item of hideoutItems ; track item ){
-      <div  [ngClass]="isBuildable(item)? 'active-hideout-item' : 'disabled-hideout-item'  " (click)="getItem(item)">
-        @if(isBuildable(item)){
-          <div class="current-lvl">
-            {{item.currentStationLvl}}
-          </div>
-        }
-        <img [src]="item.imageLink" alt="">
-        <p>{{item.name}}</p>
-     
+    <div [ngClass]="isBuildable(item)? 'active-hideout-item' : 'disabled-hideout-item'  " (click)="getItem(item)">
+      @if(isBuildable(item)){
+      <div class="current-lvl">
+        {{item.currentStationLvl}}
       </div>
-     
+      }
+      <img [src]="item.imageLink" alt="">
+      <p>{{item.name}}</p>
+
+    </div>
+
     }
   </div>
- 
+
   <app-cart></app-cart>
-  
-  
+</div>
