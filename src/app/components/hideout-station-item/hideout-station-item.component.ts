@@ -12,7 +12,9 @@ import { Router } from '@angular/router';
   styleUrl: './hideout-station-item.component.scss',
   template: `
     <div
-      [ngClass]="isBuildable(station) ? 'active-hideout-item' : 'disabled-hideout-item'"
+      [ngClass]="
+        isBuildable(station) ? 'active-hideout-item' : 'disabled-hideout-item'
+      "
       (click)="getItem(station)"
     >
       @if(isBuildable(station)){
@@ -25,16 +27,15 @@ import { Router } from '@angular/router';
     </div>
   `,
 })
-
-
 export class HideoutStationItemComponent {
-  @Input() station: any;
+  @Input() station!: any;
 
   constructor(
     private loginService: LoginService,
     private hideoutDetailService: HideoutDetailService,
     private router: Router
-  ) {}
+  ) {
+  }
 
   getItem(item: HideoutItem) {
     if (this.loginService.isLogged()) {
@@ -46,13 +47,17 @@ export class HideoutStationItemComponent {
   }
 
   isBuildable(station: HideoutItem): boolean {
-    if (
-      station.levels[station.currentStationLvl].stationLevelRequirements
-        .length > 0
-    ) {
-      return false;
-    } else {
-      return true;
-    }
+    return station.levels[station.currentStationLvl].stationLevelRequirements
+      .length > 0
+      ? false
+      : true;
+  }
+
+
+  ngOnInit(): void {
+    // TODO Station Current Level est faux ici ! a changer par la vrai valeur en bdd.
+    // car ici la valeur de station.currentStationLvl n'est pas informé et donc 
+    // retourne undefined !
+    this.station.currentStationLvl = 0
   }
 }

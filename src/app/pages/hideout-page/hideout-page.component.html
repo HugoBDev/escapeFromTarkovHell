@@ -8,20 +8,41 @@
       officia aperiam non veritatis optio repudiandae quam expedita accusamus
       quas, nobis odit!
     </p>
-    <div class="filter-wrapper">
+    <form class="filter-wrapper">
       <div class="checkbox-wrapper">
-        <input type="checkbox" name="hide-lock" id="hide-lock" />
+        <input
+          type="checkbox"
+          [formControl]="hidelockedStation"
+          name="hide-lock"
+          id="hide-lock"
+        />
         <label for="hide-lock">hide locked stations</label>
       </div>
-    </div>
+    </form>
     <div class="divider"></div>
   </div>
 
   <div class="content-page">
+    <div class="stations-list">
+      <div id="hideout-displayer">
+        @for(station of (stations$ | async) ; track station ){
+        @if(!(hidelockedStation.valueChanges | async)){
+        <app-hideout-station-item
+          [station]="station"
+        ></app-hideout-station-item>
+        } 
+        @else if(isLocked(station)) {
+        <app-hideout-station-item
+          [station]="station"
+        ></app-hideout-station-item>
+        } 
+      }
+      </div>
 
-    <div id="hideout-displayer">
-      @for(item of hideoutItems ; track item ){
-        <app-hideout-station-item [station]="item"></app-hideout-station-item>
+      @if(hidelockedStation.valueChanges | async){
+      <button class="stealth" (click)="showAllStation()">
+        Show all stations
+      </button>
       }
     </div>
 

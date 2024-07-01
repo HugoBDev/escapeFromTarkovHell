@@ -1,14 +1,26 @@
 @import "../../../styles.scss";
 
 .page {
+  
+  .stations-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   #hideout-displayer {
     display: flex;
     flex-wrap: wrap;
     gap: 1.5rem;
-    app-hideout-station-item{
-      flex-basis: 150px;
-      flex-grow: 1;
+      .stealth{
+        align-self: center;
+      }
+      
+      app-hideout-station-item{
+        flex-basis: 180px;
+        flex-grow: 1;
+      }
     }
+
   }
 
 }
