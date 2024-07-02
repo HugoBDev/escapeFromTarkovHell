@@ -21,33 +21,33 @@ export class CartComponent {
     
     this.hideoutDetailService.getCart().subscribe({
       next: (items) => {
-        // this.items = items;
-        this.items = [
-          {
-            name: 'Moteur électrique',
-            iconLink: 'https://assets.tarkov.dev/5d1b2fa286f77425227d1674-icon.webp',
-            id: '5d1b2fa286f77425227d1674',
-            quantity: 1,
-          },
-          {
-            name: 'Batterie de voiture',
-            iconLink: 'https://assets.tarkov.dev/5733279d245977289b77ec24-icon.webp',
-            id: '5733279d245977289b77ec24',
-            quantity: 1,
-          },
-          {
-            name: 'Ventilateur de processeur',
-            iconLink: 'https://assets.tarkov.dev/5734779624597737e04bf329-icon.webp',
-            id: '5734779624597737e04bf329',
-            quantity: 3,
-          },
-          {
-            name: 'Pièces détachées métalliques',
-            iconLink: 'https://assets.tarkov.dev/61bf7b6302b3924be92fa8c3-icon.webp',
-            id: '61bf7b6302b3924be92fa8c3',
-            quantity: 2,
-          },
-        ];
+        this.items = items;
+        // this.items = [
+        //   {
+        //     name: 'Moteur électrique',
+        //     iconLink: 'https://assets.tarkov.dev/5d1b2fa286f77425227d1674-icon.webp',
+        //     id: '5d1b2fa286f77425227d1674',
+        //     quantity: 1,
+        //   },
+        //   {
+        //     name: 'Batterie de voiture',
+        //     iconLink: 'https://assets.tarkov.dev/5733279d245977289b77ec24-icon.webp',
+        //     id: '5733279d245977289b77ec24',
+        //     quantity: 1,
+        //   },
+        //   {
+        //     name: 'Ventilateur de processeur',
+        //     iconLink: 'https://assets.tarkov.dev/5734779624597737e04bf329-icon.webp',
+        //     id: '5734779624597737e04bf329',
+        //     quantity: 3,
+        //   },
+        //   {
+        //     name: 'Pièces détachées métalliques',
+        //     iconLink: 'https://assets.tarkov.dev/61bf7b6302b3924be92fa8c3-icon.webp',
+        //     id: '61bf7b6302b3924be92fa8c3',
+        //     quantity: 2,
+        //   },
+        // ];
       },
       error: (e) => {
         console.error(e);
