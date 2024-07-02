@@ -1,0 +1,36 @@
+@import "../../../styles.scss";
+
+$breath-duration: 2s;
+
+svg #earth {
+  animation: breath calc($breath-duration * 3) ease-in-out forwards infinite;
+}
+
+
+svg #circle-1 {
+  animation: breath $breath-duration ease-in-out calc($breath-duration / 3)
+    forwards infinite;
+}
+
+svg #circle-2 {
+  animation: breath $breath-duration ease-in-out
+    calc(calc($breath-duration / 3) * 2) forwards infinite;
+}
+
+svg #circle-3 {
+  animation: breath $breath-duration ease-in-out $breath-duration forwards
+    infinite;
+}
+
+@keyframes breath {
+  100%,
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
