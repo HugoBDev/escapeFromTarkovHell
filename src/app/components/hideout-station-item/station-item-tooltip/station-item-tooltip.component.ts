@@ -20,8 +20,10 @@ import { AsyncPipe, NgClass } from "@angular/common";
         }
     }
     @else {
-        <p>not item require</p>
+        <p>not item require.</p>
     }
+
+    <span id="triangle"></span>
 </div>
 
 

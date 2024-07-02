@@ -1,62 +1,79 @@
-@import '../../../../styles.scss';
+@import "../../../../styles.scss";
 
-#station-item-tooltip{
-    border: 1px solid $primary;
-    padding: 8px;
-    max-width: 250px;
-    flex-wrap: wrap;
-    background: $dark-color;
+#station-item-tooltip {
+  position: absolute;
+  border: 1px solid $primary;
+  flex-direction: row;
+  gap: 4px;
+  padding: 8px;
+  background: $dark-color;
+  top: 0;
+  left: 16px;
+  right: 16px;
+  transform: translateY(-100%);
+  z-index: 3;
+
+  .requiered-item,
+  img {
+    height: 48px;
+    width: 48px;
+  }
+
+  .requiered-item {
+    position: relative;
+    opacity: 0.8;
+    z-index: 2;
+    span {
+      position: absolute;
+      z-index: 1;
+      left: 0;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  #triangle {
     position: absolute;
-    top: 0;
-    transform: translate(-50%,-100%);
-z-index: 10;
-
-    .requiered-item, img{
-        height: 48px;
-        width: 48px;
-    }
-    
-    .requiered-item{
-        position: relative;
-        span{
-            position: absolute;
-            z-index: 1;
-            left: 0;
-        }
-        opacity: 0.6;
-
-        &:hover{
-            opacity: 1;
-        }
-    }
+    bottom: 8px;
+    left: 50%;
+    border-bottom: 1px solid $primary;
+    border-right: 1px solid $primary;
+    background: $dark-color;
+    height: 16px;
+    width: 16px;
+    transform: translate(-50%, 100%) rotate(45deg);
+  }
 }
 
-.show-tooltip{
-    // background: hotpink !important;
-    display: flex;
-    animation: slideUp 300ms ease-in forwards;
+.show-tooltip {
+  // background: hotpink !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+
+  animation: slideUp 300ms ease-in forwards;
 }
 
-.hide-tooltip{
-    display: none;
-    // background: green !important; 
-    animation: slideUp 50ms ease-in backwards;
+.hide-tooltip {
+  display: none;
+  // background: green !important;
+  animation: slideUp 50ms ease-in backwards;
 }
 
 @keyframes slideUp {
-    0%{
-      top: 40px;
-      filter: drop-shadow(0 0 32px $dark-color);
-      opacity: 0;
-      
-    }
-    50%{
-        opacity: 0;
-    }
-    100%{
-      top: 0;
-      opacity: 1;
-      filter: drop-shadow(0 0 32px $dark-color);
-  
-    }
+  0% {
+    top: 40px;
+    filter: drop-shadow(0 0 32px $dark-color);
+    opacity: 0;
   }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+    filter: drop-shadow(0 0 16px $dark-color);
+  }
+}
