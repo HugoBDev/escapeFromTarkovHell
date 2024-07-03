@@ -1,47 +1,49 @@
 @import "../../../styles.scss";
 
-#hideout-displayer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+.page {
+  
+  .stations-list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  #hideout-displayer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+      .stealth{
+        align-self: center;
+      }
+      
+      app-hideout-station-item{
+        flex-basis: 180px;
+        flex-grow: 1;
+      }
+    }
+
+  }
+
 }
 
-.hideout-item {
-  position: relative;
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0.5rem;
-  flex-basis: 200px;
-}
 
-.disabled-hideout-item {
-  @extend .hideout-item;
-  border: 2px solid $primary-100;
-  color: #929292;
-  img {
-    opacity: 0.5;
+@media screen and (min-width: 901px){
+  .page{
+    .content-page{
+      app-cart{
+        min-width: 500px;
+        flex-grow: 1;
+      }
+    }
   }
 }
 
-.active-hideout-item {
-  @extend .hideout-item;
-  border: 2px solid $primary;
-  cursor: pointer;
-  color: $light-color;
-}
-
-.current-lvl {
-  position: absolute;
-  color: $dark-color;
-  top: 0;
-  left: 0;
-  text-align: center;
-  padding: 0.25rem;
-  background: $primary;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 0 0 8px 0;
+@media screen and (min-width: 901px) and (max-width: 1200px) {
+  .page{
+    .content-page{
+      app-cart{
+        min-width: 400px;
+        flex-grow: 1;
+      }
+    }
+  }
 }

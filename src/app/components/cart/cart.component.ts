@@ -13,6 +13,7 @@ import { BackApiService } from '../../services/back.api';
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
+
   items: Item[] = [];
 
   constructor(private hideoutDetailService: HideoutDetailService, private backApiService: BackApiService) {}
