@@ -23,14 +23,14 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
     CartComponent,
     HideoutStationItemComponent,
     ReactiveFormsModule,
+    LoaderComponent
   ],
   templateUrl: './hideout-page.component.html',
   styleUrl: './hideout-page.component.scss',
 })
 export class HideoutPageComponent {
-  stations$: BehaviorSubject<HideoutItem[]> = new BehaviorSubject<
-    HideoutItem[]
-  >([]);
+  
+  stations$: BehaviorSubject<HideoutItem[]> = new BehaviorSubject<HideoutItem[]>([]);
   hidelockedStation: FormControl = new FormControl(null);
 
   constructor(private tarkovApiService: tarkovApiService) {
@@ -42,6 +42,10 @@ export class HideoutPageComponent {
       .catch((e) => console.error(e));
   }
 
+  isHoverVisible: boolean = false;
+  isAnimate: boolean = false;
+  private hoverTimeout: any;
+
   isLocked(station: HideoutItem): boolean {
     return station.levels[0].stationLevelRequirements.length > 0 ? false : true;
   }
@@ -49,10 +53,6 @@ export class HideoutPageComponent {
   showAllStation() {
     this.hidelockedStation.setValue(false);
   }
-
-  isHoverVisible: boolean = false;
-  isAnimate: boolean = false;
-  private hoverTimeout: any;
 
   startShowTooltip() {
     this.clearHoverTimeout();

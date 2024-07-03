@@ -1,7 +1,6 @@
 @import "../../../styles.scss";
 
-.page {
-  
+.page { 
   .stations-list{
     display: flex;
     flex-direction: column;
@@ -13,16 +12,13 @@
     gap: 1.5rem;
       .stealth{
         align-self: center;
-      }
-      
+      } 
       app-hideout-station-item{
         flex-basis: 180px;
         flex-grow: 1;
       }
     }
-
   }
-
 }
 
 
