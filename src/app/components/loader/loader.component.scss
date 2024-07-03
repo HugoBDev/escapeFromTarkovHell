@@ -1,0 +1,120 @@
+@import "../../../styles.scss";
+
+$breath-duration: 2s;
+
+#loader {
+  position: relative;
+
+  svg #earth {
+    animation: breath calc($breath-duration * 3) ease-in-out forwards infinite;
+  }
+
+  svg #circle-1 {
+    animation: breath $breath-duration ease-in-out calc($breath-duration / 3)
+      forwards infinite;
+  }
+
+  svg #circle-2 {
+    animation: breath $breath-duration ease-in-out
+      calc(calc($breath-duration / 3) * 2) forwards infinite;
+  }
+
+  svg #circle-3 {
+    animation: breath $breath-duration ease-in-out $breath-duration forwards
+      infinite;
+  }
+
+  #circle-sm {
+    height: 33px;
+    width: 33px;
+    border: 2px solid $primary;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    border-radius: 99999px;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      top: 6%;
+      animation: earth-rotation-sm calc($breath-duration * 2) linear infinite;
+    }
+  }
+
+  #circle-md {
+    height: 54px;
+    width: 54px;
+    border: 3px solid $primary;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    border-radius: 99999px;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      top: 6%;
+      animation: earth-rotation-md calc($breath-duration * 2) linear infinite;
+    }
+  }
+
+  #circle-lg {
+    height: 96px;
+    width: 96px;
+    border: 5px solid $primary;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    border-radius: 99999px;
+    overflow: hidden;
+
+    svg {
+      position: absolute;
+      top: 6%;
+      animation: earth-rotation-lg calc($breath-duration * 2) linear infinite;
+    }
+  }
+
+  @keyframes breath {
+    100%,
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.2;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes earth-rotation-sm {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -51px;
+    }
+  }
+
+  @keyframes earth-rotation-md {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -82px;
+    }
+  }
+
+  @keyframes earth-rotation-lg {
+    0% {
+      left: 0;
+    }
+    100% {
+      left: -144px;
+    }
+  }
+}

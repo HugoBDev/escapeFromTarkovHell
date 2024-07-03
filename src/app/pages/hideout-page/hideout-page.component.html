@@ -1,4 +1,8 @@
 <div id="hideout-displayer">
+
+  <app-loader size="small"></app-loader>
+  <app-loader size="medium"></app-loader>
+  <app-loader size="large"></app-loader>
     @for(item of hideoutItems ; track item ){
       <div  [ngClass]="isBuildable(item)? 'active-hideout-item' : 'disabled-hideout-item'  " (click)="getItem(item)">
         @if(isBuildable(item)){
