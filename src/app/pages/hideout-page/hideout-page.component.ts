@@ -11,12 +11,13 @@ import { NgClass } from '@angular/common';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { CartComponent } from '../../components/cart/cart.component';
 import { LoginService } from '../../services/login.service';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 
 @Component({
   selector: 'app-hideout-page',
   standalone: true,
-  imports: [RouterLink, RouterModule, RouterOutlet, NgClass, CartComponent],
+  imports: [RouterLink, RouterModule, RouterOutlet, NgClass, CartComponent, LoaderComponent],
   templateUrl: './hideout-page.component.html',
   styleUrl: './hideout-page.component.scss',
 })
