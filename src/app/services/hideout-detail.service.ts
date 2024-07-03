@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { HideoutItem, Item } from '../models/hideout-item.model';
@@ -18,9 +18,9 @@ export class HideoutDetailService {
   cartItems$: Observable<Item[]> = this.cartItemsSubject.asObservable();
 
 
-  constructor(private http: HttpClient, private loginService : LoginService) {
+  constructor(private http: HttpClient) {
     
-    this.loadInitialCart();
+    // this.loadInitialCart();
   }
 
  
@@ -54,9 +54,9 @@ export class HideoutDetailService {
     );
   }
 
-  getCart(): Observable<Item[]> {
-      return this.cartItems$;
-  }
+  // getCart(): Observable<Item[]> {
+  //     return this.cartItems$;
+  // }
 
   deleteCartItem(id: string): Observable<any> {
     return this.http.delete(`${this.itemApiUrl}/items/${id}`).pipe(

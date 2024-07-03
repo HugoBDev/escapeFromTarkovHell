@@ -3,6 +3,7 @@ import { Item } from '../../models/hideout-item.model';
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { NgClass } from '@angular/common';
 import { CartItemComponent } from './cart-item/cart-item.component';
+import { BackApiService } from '../../services/back.api';
 
 @Component({
   selector: 'app-cart',
@@ -14,10 +15,10 @@ import { CartItemComponent } from './cart-item/cart-item.component';
 export class CartComponent {
   items: Item[] = [];
 
-  constructor(private hideoutDetailService: HideoutDetailService) {}
+  constructor(private hideoutDetailService: HideoutDetailService, private backApiService: BackApiService) {}
 
   ngOnInit(): void {
-    this.hideoutDetailService.getCart().subscribe({
+    this.backApiService.getCart().subscribe({
       next: (items) => {
         this.items = items;
       },
@@ -27,22 +28,22 @@ export class CartComponent {
     });
   }
 
-  deleteItem(id: string) {
-    this.hideoutDetailService.deleteCartItem(id).subscribe({
-      next: (res) => {
-        console.log("L'item " + id + ' a bien été retiré:', res);
-      },
-      error: (e) =>
-        console.error("Erreur lors de la suppression de l'item:", e),
-    });
-  }
+  // deleteItem(id: string) {
+  //   this.hideoutDetailService.deleteCartItem(id).subscribe({
+  //     next: (res) => {
+  //       console.log("L'item " + id + ' a bien été retiré:', res);
+  //     },
+  //     error: (e) =>
+  //       console.error("Erreur lors de la suppression de l'item:", e),
+  //   });
+  // }
 
-  deleteAll() {
-    this.hideoutDetailService.clearCart().subscribe({
-      next: (res) => {
-        console.log('la liste à été clear');
-      },
-      error: (e) => console.error(e),
-    });
-  }
+  // deleteAll() {
+  //   this.hideoutDetailService.clearCart().subscribe({
+  //     next: (res) => {
+  //       console.log('la liste à été clear');
+  //     },
+  //     error: (e) => console.error(e),
+  //   });
+  // }
 }

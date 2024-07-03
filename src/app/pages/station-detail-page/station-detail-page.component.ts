@@ -7,6 +7,8 @@ import {
 import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { AsyncPipe } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
+import { BackApiService } from '../../services/back.api';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-station-detail-page',
@@ -19,7 +21,7 @@ export class StationDetailPageComponent {
   stationDetail!: HideoutItem;
   itemsRequired: ItemRequirement[] = [];
   itemCart: Item[] = [];
-  constructor(private hideoutDetailService: HideoutDetailService) {}
+  constructor(private hideoutDetailService: HideoutDetailService,private  backApiService: BackApiService, private loginService : LoginService) {}
 
   ngOnInit(): void {
     this.stationDetail = this.hideoutDetailService.getSelectedItem();
@@ -35,6 +37,7 @@ export class StationDetailPageComponent {
     item.quantity = itemQuantity.quantity;
     this.hideoutDetailService.addToCart(item).subscribe({
       next: (response) => {
+        
      console.log("l'objet à bien été ajouté au panier:", item);
         this.showCart()
       },
@@ -43,9 +46,24 @@ export class StationDetailPageComponent {
     });
   }
 
+  addToCart2(tarkovId :string){
+    const user = this.loginService.getUserData();
+    
+    this.backApiService.addToCart(tarkovId, user).subscribe({
+      next: (response) => {
+        console.log(tarkovId);
+        
+        console.log("l'objet à bien été ajouté au panier:", tarkovId);
+        this.showCart()
+      },
+      error: (e) =>
+        console.error("cette object n'a pas pu etre ajouté au panier:", e),
+    })
+  }
+
   showCart() {
     
-      this.hideoutDetailService.getCart().subscribe({
+      this.backApiService.getCart().subscribe({
         next: (items) => {
           this.itemCart = items;
         },

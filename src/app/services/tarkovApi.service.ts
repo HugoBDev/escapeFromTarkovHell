@@ -43,7 +43,6 @@ export class tarkovApiService {
                 level             
               }
               itemRequirements{
-                
                 quantity    
                   item{
                 id

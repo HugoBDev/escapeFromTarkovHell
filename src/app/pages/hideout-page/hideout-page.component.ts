@@ -29,7 +29,7 @@ export class HideoutPageComponent {
     private tarkovApiService: tarkovApiService,
     private router: Router,
     private hideoutDetailService: HideoutDetailService,
-    private loginService : LoginService
+    private loginService : LoginService,
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +42,8 @@ export class HideoutPageComponent {
     this.tarkovApiService
       .getHideoutStations()
       .then((data: HideoutItem) => {
+        console.log(data);
+        
        
 
         const hideoutStations = data.hideoutStations;
