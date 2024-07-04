@@ -58,16 +58,16 @@ export class HideoutDetailService {
   //     return this.cartItems$;
   // }
 
-  deleteCartItem(id: string): Observable<any> {
-    return this.http.delete(`${this.itemApiUrl}/items/${id}`).pipe(
-      tap(() => {
-        const currentItems = this.cartItemsSubject.value.filter(
-          (item) => item.id !== id
-        );
-        this.cartItemsSubject.next(currentItems);
-      })
-    );
-  }
+  // deleteCartItem(id: string): Observable<any> {
+  //   return this.http.delete(`${this.itemApiUrl}/items/${id}`).pipe(
+  //     tap(() => {
+  //       const currentItems = this.cartItemsSubject.value.filter(
+  //         (item) => item.id !== id
+  //       );
+  //       this.cartItemsSubject.next(currentItems);
+  //     })
+  //   );
+  // }
 
   clearCart(): Observable<any> {
     return this.http.delete(`${this.itemApiUrl}/items`).pipe(

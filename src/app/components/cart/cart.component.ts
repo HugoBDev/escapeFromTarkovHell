@@ -29,15 +29,7 @@ export class CartComponent {
     });
   }
 
-  // deleteItem(id: string) {
-  //   this.hideoutDetailService.deleteCartItem(id).subscribe({
-  //     next: (res) => {
-  //       console.log("L'item " + id + ' a bien été retiré:', res);
-  //     },
-  //     error: (e) =>
-  //       console.error("Erreur lors de la suppression de l'item:", e),
-  //   });
-  // }
+ 
 
   // deleteAll() {
   //   this.hideoutDetailService.clearCart().subscribe({

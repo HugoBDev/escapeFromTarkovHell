@@ -15,6 +15,8 @@ export class BackApiService {
   >([]);
   cartItems$: Observable<Item[]> = this.cartItemsSubject.asObservable();
   apiUrl = environnement.apiUrl;
+   loginService = this.injector.get(LoginService);
+   user = this.loginService.getUserData();
   constructor(private http: HttpClient, private injector: Injector) {
     this.loadInitialCart();
   }
@@ -36,10 +38,10 @@ export class BackApiService {
   }
 
     private  loadInitialCart(): void {
-    const loginService = this.injector.get(LoginService);
-    const user = loginService.getUserData();
+    
+    
 
-    this.http.get<any>(`${this.apiUrl}/user-items/${user.id}`).subscribe({
+    this.http.get<any>(`${this.apiUrl}/user-items/${this.user.id}`).subscribe({
       next: (items) => {
         items.userItems.forEach((item: any) => {
           console.log(item.item);
@@ -56,5 +58,19 @@ export class BackApiService {
 
   getCart(): Observable<Item[]> {
     return this.cartItems$;
+  }
+
+  deleteUserItem(tarkovId :string) : Observable<any> {
+    
+      return this.http.delete<any>(`${this.apiUrl}/user-items/${this.user.id}/${tarkovId}`).pipe(
+        tap(() => {
+          const currentItems = this.cartItemsSubject.value.filter(
+            (item) => item.tarkovId !==  tarkovId
+          );
+          this.cartItemsSubject.next(currentItems);
+        })
+      )
+        
+
   }
 }
