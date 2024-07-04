@@ -1,13 +1,12 @@
 import {
   Component,
   ElementRef,
-  EventEmitter,
   Input,
-  Output,
   ViewChild,
 } from '@angular/core';
 import { Item } from '../../../models/hideout-item.model';
 import { HideoutDetailService } from '../../../services/hideout-detail.service';
+import { BackApiService } from '../../../services/back.api';
 
 @Component({
   selector: 'app-cart-item',
@@ -27,7 +26,7 @@ import { HideoutDetailService } from '../../../services/hideout-detail.service';
           <div id="goal">Vent lvl 2</div>
         </div>
         <button id="found-btn" (click)="foundClick()">found!</button>
-        <button class="stealth" (click)="deleteClick()">delete</button>
+        <button class="stealth" (click)="deleteClick(item.tarkovId)">delete</button>
       </div>
     </div>
   `,
@@ -38,13 +37,17 @@ export class CartItemComponent {
   @ViewChild('crossOut', { static: true }) crossOutRef!: ElementRef;
   @ViewChild('itemName', { static: true }) itemNameRef!: ElementRef;
 
-  constructor(private hideoutDetailService: HideoutDetailService) {}
+  constructor(private hideoutDetailService: HideoutDetailService, private backApiService: BackApiService) {}
 
-  deleteClick() {
+  deleteClick(tarkovItemId : string) {
+    console.log(tarkovItemId);
+    
+    
+    
     // 1- Cible les éléments à animer
     const cartElement: HTMLElement = this.cartItemRef.nativeElement;
 
-    this.hideoutDetailService.deleteCartItem(this.item.id).subscribe({
+    this.backApiService.deleteUserItem(tarkovItemId).subscribe({
       next: (value) => {
         // 2 - ajoute là class 'animation sur l'element ciblé à animer
         cartElement.classList.add('deleted');

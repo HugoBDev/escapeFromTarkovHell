@@ -22,7 +22,7 @@ export interface ItemRequirement {
 }
 
 export interface Item {
-    id : string;
+    tarkovId : string;
     quantity : ItemRequirement["quantity"]
     name:     string;
     iconLink: string;

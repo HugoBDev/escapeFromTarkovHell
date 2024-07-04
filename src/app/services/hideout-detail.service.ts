@@ -20,7 +20,7 @@ export class HideoutDetailService {
 
   constructor(private http: HttpClient) {
     
-    // this.loadInitialCart();
+ 
   }
 
  
@@ -32,17 +32,7 @@ export class HideoutDetailService {
   getSelectedItem(): HideoutItem {
     return this.selectedItem;
   }
-  //*Charger Cart dans le constructor du service//
-  private loadInitialCart(): void {
-    this.http.get<Item[]>(`${this.itemApiUrl}/items`).subscribe({
-      next: (items) => {
-        this.cartItemsSubject.next(items);
-      },
-      error: (e) =>
-        console.error('Erreur lors du chargement initial du panier:', e),
-    });
-  }
-  //*Ici j'ajoute à la DB les Item puis je met à jour directement grave au BehaviorSubject
+
   addToCart(item: Item): Observable<Item> {
   
   
@@ -50,21 +40,6 @@ export class HideoutDetailService {
       tap((newItem) => {
         const currentItems = this.cartItemsSubject.value;
         this.cartItemsSubject.next([...currentItems, newItem]);
-      })
-    );
-  }
-
-  // getCart(): Observable<Item[]> {
-  //     return this.cartItems$;
-  // }
-
-  deleteCartItem(id: string): Observable<any> {
-    return this.http.delete(`${this.itemApiUrl}/items/${id}`).pipe(
-      tap(() => {
-        const currentItems = this.cartItemsSubject.value.filter(
-          (item) => item.id !== id
-        );
-        this.cartItemsSubject.next(currentItems);
       })
     );
   }

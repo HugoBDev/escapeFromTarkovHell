@@ -33,27 +33,17 @@ export class StationDetailPageComponent {
     this.showCart();
   }
 
-  addToCart(item: Item, itemQuantity: ItemRequirement) {
-    item.quantity = itemQuantity.quantity;
-    this.hideoutDetailService.addToCart(item).subscribe({
-      next: (response) => {
-        
-     console.log("l'objet à bien été ajouté au panier:", item);
-        this.showCart()
-      },
-      error: (e) =>
-        console.error("cette object n'a pas pu etre ajouté au panier:", e),
-    });
-  }
+ 
 
-  addToCart2(tarkovId :string){
+  addToCart(item : any){
+    console.log(item);
+    const id = item.item.id;
     const user = this.loginService.getUserData();
     
-    this.backApiService.addToCart(tarkovId, user).subscribe({
-      next: (response) => {
-        console.log(tarkovId);
-        
-        console.log("l'objet à bien été ajouté au panier:", tarkovId);
+    this.backApiService.addToCart(id, user).subscribe({
+      next: (response) => {       
+        console.log(id);
+        console.log("l'objet à bien été ajouté au panier:",id);
         this.showCart()
       },
       error: (e) =>
@@ -72,12 +62,6 @@ export class StationDetailPageComponent {
     
   }
 
-  deleteItem(id: string) {
-    this.hideoutDetailService.deleteCartItem(id).subscribe({
-      next: (res) => {
-        console.log("l'item " + id + ' à bien été remove:', res);
-      },
-    });
-  }
+
   
 }
