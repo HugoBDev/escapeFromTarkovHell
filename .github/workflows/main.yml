@@ -4,7 +4,7 @@ run-name: ${{ github.actor }} deploy ${{ github.repository }} process 🚀
 on:
     push:
         branches:
-            - master
+            - main
 
 jobs: 
     build:
