@@ -1,7 +1,8 @@
+<h1>Register</h1>
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
   <div class="username form-input">
     <input
-      placeholder="type your username"
+      placeholder="type a username"
       class="username"
       formControlName="username"
       type="email"
@@ -10,11 +11,16 @@
 
   <div class="password form-input">
     <input
-      placeholder="type your password"
+      placeholder="type a password"
       class="password"
       formControlName="password"
       type="password"
     />
+  </div>
+  <div id="pwd-checker-bar">
+    @for (item of (pwdSecurityLevel | async); track item) {
+      <div class="progress-element"></div>
+    }
   </div>
   <div class="checkbox-wrapper">
     <input id="consent" type="checkbox" />
@@ -23,5 +29,5 @@
     >
   </div>
 
-  <button type="submit">Sign Up</button>
+  <button [disabled]="!signUpForm.valid" type="submit">Sign Up</button>
 </form>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 $dark-color: #202020;
 $primary: #c28c59;
+$primary-200: #544f49;
 $primary-100: #9f8d7c;
 $primary-050: #e8be6b;
 $light-color: #e5d6c8;
@@ -27,6 +28,14 @@ button {
   &:focus {
     outline: none;
   }
+
+
+  &:disabled{
+    background: $primary-200;
+    cursor: not-allowed;
+    color: $dark-color;
+  }
+
   &:active {
     background: $primary-100;
   }

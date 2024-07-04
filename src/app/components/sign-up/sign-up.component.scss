@@ -1,2 +1,16 @@
-@import "../../../styles.scss";
+@import '../../../styles.scss';
 
+#pwd-checker-bar{
+    width: calc(100% - 2px);
+    height: 8px;
+    border: 1px solid $primary;
+    display: flex;
+    align-items: center;
+    padding-left: 1%;
+    gap: 1%;
+    .progress-element{
+        width: 19%;
+        height: 50%;
+        background: $primary;
+    }
+}
