@@ -35,14 +35,15 @@ export class StationDetailPageComponent {
 
  
 
-  addToCart(tarkovId :string){
+  addToCart(item : any){
+    console.log(item);
+    const id = item.item.id;
     const user = this.loginService.getUserData();
     
-    this.backApiService.addToCart(tarkovId, user).subscribe({
-      next: (response) => {
-        console.log(tarkovId);
-        
-        console.log("l'objet à bien été ajouté au panier:", tarkovId);
+    this.backApiService.addToCart(id, user).subscribe({
+      next: (response) => {       
+        console.log(id);
+        console.log("l'objet à bien été ajouté au panier:",id);
         this.showCart()
       },
       error: (e) =>

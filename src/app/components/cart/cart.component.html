@@ -1,7 +1,7 @@
 <div id="cart">
   <div id="cart-header">
     <div>Your cart</div>
-    <button class="stealth" >Clear Cart</button>
+    <button class="stealth" (click)="clearCart()" >Clear Cart</button>
   </div>
   <div id="cart-wrapper" [ngClass]="items.length === 0 ? 'centered' : ''">
     @if (items.length === 0) {
