@@ -5,6 +5,7 @@ $primary-200: #544f49;
 $primary-100: #9f8d7c;
 $primary-050: #e8be6b;
 $light-color: #e5d6c8;
+$danger-color: #a13514;
 
 //  TAILLE DE L'ECRAN EN <= à 360px
 
@@ -76,6 +77,10 @@ input[type="email"] {
   &:focus {
     outline: none;
     border: 1px solid $primary-050;
+  }
+
+  &.error{
+    border: 1px solid $danger-color !important;
   }
 }
 

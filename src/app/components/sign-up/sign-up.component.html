@@ -1,29 +1,59 @@
+<!-- 
+  ****************
+  *** REGISER  ***
+  ****************
+ -->
+
 <h1>Register</h1>
 <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-  <div class="username form-input">
-    <input
-      placeholder="type a username"
-      class="username"
-      formControlName="username"
-      type="email"
-    />
-  </div>
+  <div class="input-wrapper">
+    <div class="username form-input">
+      <input
+        autocomplete="username"
+        placeholder="type a username"
+        class="input username"
+        formControlName="username"
+        type="email"
+      />
+    </div>
 
-  <div class="password form-input">
-    <input
-      placeholder="type a password"
-      class="password"
-      formControlName="password"
-      type="password"
-    />
-  </div>
-  <div id="pwd-checker-bar">
-    @for (item of (pwdSecurityLevel | async); track item) {
-      <div class="progress-element"></div>
+    @if(inputErrorMessage){
+    <div class="input-error">{{ inputErrorMessage }}</div>
     }
   </div>
+
+  <div class="input-wrapper">
+    <div class="password form-input">
+      <input
+        autocomplete="new-password"
+        placeholder="type a password"
+        class="input password"
+        formControlName="password"
+        type="password"
+      />
+    </div>
+    <div id="security-checker">
+      <div
+        id="security-advice"
+        [ngClass]="{ 'advice-appear': pwdSecurityLevel.getValue().length > 0 }"
+      >
+        {{ securityAdvices[pwdSecurityLevel.getValue().length] }}
+      </div>
+      <div id="pwd-checker-bar">
+        @for (item of (pwdSecurityLevel | async); track item){
+        <div
+          class="progress-element"
+          [ngStyle]="{
+            opacity: (pwdSecurityLevel.getValue().length * 20) / 100
+          }"
+        ></div>
+        }
+      </div>
+    </div>
+  </div>
+
   <div class="checkbox-wrapper">
-    <input id="consent" type="checkbox" />
+    <input formControlName="consent" id="consent" type="checkbox" />
     <label for="consent"
       >J’accepte come un pigeon de tout donner à la Huber Corp.</label
     >
