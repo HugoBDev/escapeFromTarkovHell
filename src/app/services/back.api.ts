@@ -16,7 +16,7 @@ export class BackApiService {
   cartItems$: Observable<Item[]> = this.cartItemsSubject.asObservable();
   apiUrl = environnement.apiUrl;
   loginService = this.injector.get(LoginService);
-  user = this.loginService.getUserData();
+  user = this.getUserData();
   constructor(private http: HttpClient, private injector: Injector) {
     this.loadInitialCart();
   }
@@ -86,6 +86,17 @@ export class BackApiService {
 
 
   loadAllStationsByLvl(level : number ): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/stations/level/${level}`);
+    return this.http.get<any>(`${this.apiUrl}/stations/level/${level}`).pipe(
+      map((res) => res) 
+    )
+  }
+
+  private getUserData() : any{
+    const tarkovUserData =  sessionStorage.getItem('tarkovUser')
+    if(tarkovUserData){
+      return JSON.parse(tarkovUserData)
+    }else {
+      throw new Error('Aucun utilisateur n\'est connecté')
+    }
   }
 }

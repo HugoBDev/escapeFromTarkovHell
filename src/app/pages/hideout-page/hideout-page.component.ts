@@ -48,8 +48,11 @@ export class HideoutPageComponent {
 
   ngOnInit(): void {
     this.backApiService.loadAllStationsByLvl(1).subscribe({
-      next: (items) => {
-        console.log(items);
+      next: (stations) => {
+        stations.forEach((station : any) => {
+          console.log(station);
+          
+        })
       },
       error: (e) => console.error(e),
     });

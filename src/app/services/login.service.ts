@@ -60,7 +60,7 @@ export class LoginService {
     this.router.navigate(['/login']);
   }
 
-  getUserData() : any{
+   getUserData() : any{
     const tarkovUserData =  sessionStorage.getItem('tarkovUser')
     if(tarkovUserData){
       return JSON.parse(tarkovUserData)
@@ -69,7 +69,7 @@ export class LoginService {
     }
   }
 
-  getUserStatus(): Observable<any> {
+  private getUserStatus(): Observable<any> {
     return this.http.get(`${this.BASE_URL}/auth/status`).pipe(
       map((res: any) => {
         console.log(res.id);
