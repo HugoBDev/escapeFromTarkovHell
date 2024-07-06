@@ -1,22 +1,24 @@
 <div id="hideout-detail">
-    <div class="content">
-        <p class="hideout">Ma planque</p>
-        <div class="header">
-            <img [src]="stationDetail.imageLink" alt="">
-            <p>{{stationDetail.name}}</p>
-            <p>(Niveau :{{stationDetail.currentStationLvl}})</p>
-        </div>
-        <div class="item-required">
-           @for(item of itemsRequired ; track item){
-            <div class="items" (click)="addToCart(item)">
-              <img [src]=" item.item.iconLink" alt="">
-              {{ item.item.name}}
-              <p>x {{ item.quantity}}</p>
+    @if(station){
+        <div class="content">
+            <p class="hideout">Ma planque</p>
+            <div class="header">
+                <img [src]="station.imageLink" alt="">
+                <p>{{station.name}}</p>
+                <p>(Niveau :{{station.level}})</p>
             </div>
-           }
+            <div class="item-required">
+               @for(item of station.stationItems ; track item){
+                <div class="items">
+                  <img [src]=" item.item.iconLink" alt="">
+                  {{ item.item.name}}
+                  <p>x {{ item.quantity}}</p>
+                </div>
+               }
+            </div>
+            <button (click)="showCart()">Show Cart</button>
         </div>
-        <button (click)="showCart()">Show Cart</button>
-    </div>
+    }
 
     <app-cart></app-cart>
 

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { Item } from '../../models/hideout-item.model';
-import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { NgClass } from '@angular/common';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { BackApiService } from '../../services/back.api';

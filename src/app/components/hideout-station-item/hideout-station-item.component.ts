@@ -1,7 +1,7 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { LoginService } from '../../services/login.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { StationItemTooltipComponent } from './station-item-tooltip/station-item-tooltip.component';
 import { BehaviorSubject } from 'rxjs';
 import { Station } from '../../models/tarkovApi.model';
@@ -9,7 +9,7 @@ import { Station } from '../../models/tarkovApi.model';
 @Component({
   selector: 'app-hideout-station-item',
   standalone: true,
-  imports: [NgClass, StationItemTooltipComponent],
+  imports: [NgClass, StationItemTooltipComponent, RouterLink],
   styleUrl: './hideout-station-item.component.scss',
   template: `
     <div
@@ -18,8 +18,9 @@ import { Station } from '../../models/tarkovApi.model';
       [ngClass]="
         isBuildable(station) ? 'disabled-hideout-item' :'active-hideout-item' 
       "
-      
-    >
+      [routerLink]="['/station-details', station.id]"
+  >
+  
 
     <!-- @if(station.stationLvlRequirements.length > 0){
       <app-station-item-tooltip [visible]="visible"
@@ -43,7 +44,7 @@ export class HideoutStationItemComponent {
   visible:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
 
   constructor(
-   
+   private router : Router
   ) {}
  
   private hoverTimeout: any;
@@ -82,6 +83,8 @@ export class HideoutStationItemComponent {
 
     return isBuildable;
   }
+
+  
 
   ngOnInit(): void {
     // TODO Station Current Level est faux ici ! a changer par la vrai valeur en bdd.

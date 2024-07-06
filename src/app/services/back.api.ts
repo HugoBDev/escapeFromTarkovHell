@@ -83,6 +83,12 @@ export class BackApiService {
     )
   }
 
+  loadStationRequirementById(stationId : number ): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/stations/${stationId}`).pipe(
+      map((res) => res) 
+    )
+  }
+
 
   loadAllStationsByLvl(level : number ): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/stations/level/${level}`).pipe(

@@ -32,7 +32,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'station-details',
+    path: 'station-details/:id',
     component: StationDetailPageComponent,
   },
 ];

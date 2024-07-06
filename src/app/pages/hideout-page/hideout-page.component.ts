@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
@@ -7,7 +7,7 @@ import { HideoutStationItemComponent } from '../../components/hideout-station-it
 import { BehaviorSubject } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BackApiService } from '../../services/back.api';
-import { Station } from '../../models/tarkovApi.model';
+import { Item, Station } from '../../models/tarkovApi.model';
 
 @Component({
   selector: 'app-hideout-page',
@@ -26,6 +26,7 @@ import { Station } from '../../models/tarkovApi.model';
   styleUrl: './hideout-page.component.scss',
 })
 export class HideoutPageComponent {
+  @Output() stationItem : EventEmitter<Station> = new EventEmitter<Station>();
   stations$: BehaviorSubject<Station[]> = new BehaviorSubject<
     Station[]
   >([]);
@@ -34,17 +35,12 @@ export class HideoutPageComponent {
   constructor(
     private backApiService: BackApiService
   ) {
-    // this.tarkovApiService
-    //   .getHideoutStations()
-    //   .then((data: HideoutItem) => {
-    //     this.stations$.next(data.hideoutStations);
-    //   })
-    //   .catch((e) => console.error(e));
 
     this.backApiService.loadAllStationsByLvl(1).subscribe({
       next: (stations) => {
         stations.forEach((station : Station) => {
           this.stations$.next(stations)
+          this.stationItem.emit(station)
           
         })
       },

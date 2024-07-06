@@ -5,7 +5,6 @@ import {
   ViewChild,
 } from '@angular/core';
 import { Item } from '../../../models/hideout-item.model';
-import { HideoutDetailService } from '../../../services/hideout-detail.service';
 import { BackApiService } from '../../../services/back.api';
 
 @Component({
@@ -37,7 +36,7 @@ export class CartItemComponent {
   @ViewChild('crossOut', { static: true }) crossOutRef!: ElementRef;
   @ViewChild('itemName', { static: true }) itemNameRef!: ElementRef;
 
-  constructor(private hideoutDetailService: HideoutDetailService, private backApiService: BackApiService) {}
+  constructor( private backApiService: BackApiService) {}
 
   deleteClick(tarkovItemId : string) {
     console.log(tarkovItemId);

@@ -1,55 +1,64 @@
-import { Component } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import {
   HideoutItem,
   Item,
-  ItemRequirement,
+ 
 } from '../../models/hideout-item.model';
-import { HideoutDetailService } from '../../services/hideout-detail.service';
 import { AsyncPipe } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
 import { BackApiService } from '../../services/back.api';
 import { LoginService } from '../../services/login.service';
+import { Station } from '../../models/tarkovApi.model';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-station-detail-page',
   standalone: true,
-  imports: [AsyncPipe, CartComponent],
+  imports: [AsyncPipe, CartComponent,RouterModule],
   templateUrl: './station-detail-page.component.html',
   styleUrl: './station-detail-page.component.scss',
 })
 export class StationDetailPageComponent {
-  stationDetail!: HideoutItem;
-  itemsRequired: ItemRequirement[] = [];
+  route: ActivatedRoute = inject(ActivatedRoute);
+  stationId : number = 0
+  station : Station | null = null
+  
   itemCart: Item[] = [];
-  constructor(private hideoutDetailService: HideoutDetailService,private  backApiService: BackApiService, private loginService : LoginService) {}
+  constructor(private  backApiService: BackApiService, private loginService : LoginService) {
+     this.stationId = this.route.snapshot.params['id'];
+  }
 
   ngOnInit(): void {
-    this.stationDetail = this.hideoutDetailService.getSelectedItem();
-    this.itemsRequired =
-      this.stationDetail.levels[
-        this.stationDetail.currentStationLvl
-      ].itemRequirements;
+   this.backApiService.loadStationRequirementById(this.stationId).subscribe({
+     next: (station) => {
+      this.station = station;
+     
+     },
+     error: (e) =>
+       console.error("Erreur lors de la création de la requête:", e),
+   })
 
     this.showCart();
   }
 
  
 
-  addToCart(item : any){
-    console.log(item);
-    const id = item.item.id;
-    const user = this.loginService.getUserData();
+  // addToCart(item : any){
+  //   console.log(item);
+  //   const id = item.item.id;
+  //   const user = this.loginService.getUserData();
     
-    this.backApiService.addToCart(id, user).subscribe({
-      next: (response) => {       
-        console.log(id);
-        console.log("l'objet à bien été ajouté au panier:",id);
-        this.showCart()
-      },
-      error: (e) =>
-        console.error("cette object n'a pas pu etre ajouté au panier:", e),
-    })
-  }
+  //   this.backApiService.addToCart(id, user).subscribe({
+  //     next: (response) => {       
+  //       console.log(id);
+  //       console.log("l'objet à bien été ajouté au panier:",id);
+  //       this.showCart()
+  //     },
+  //     error: (e) =>
+  //       console.error("cette object n'a pas pu etre ajouté au panier:", e),
+  //   })
+  // }
 
   showCart() {
     
