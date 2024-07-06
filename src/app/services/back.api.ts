@@ -15,9 +15,8 @@ export class BackApiService {
   >([]);
   cartItems$: Observable<Item[]> = this.cartItemsSubject.asObservable();
   apiUrl = environnement.apiUrl;
-  loginService = this.injector.get(LoginService);
   user = this.getUserData();
-  constructor(private http: HttpClient, private injector: Injector) {
+  constructor(private http: HttpClient) {
     this.loadInitialCart();
   }
 

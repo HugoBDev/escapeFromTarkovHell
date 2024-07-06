@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
-import { HideoutItem, Item } from '../../models/hideout-item.model';
-import { tarkovApiService } from '../../services/tarkovApi.service';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
-import { LoginService } from '../../services/login.service';
-import { LoaderComponent } from '../../components/loader/loader.component';
 
 import { HideoutStationItemComponent } from '../../components/hideout-station-item/hideout-station-item.component';
 import { BehaviorSubject } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BackApiService } from '../../services/back.api';
+import { Station } from '../../models/tarkovApi.model';
 
 @Component({
   selector: 'app-hideout-page',
@@ -29,28 +26,25 @@ import { BackApiService } from '../../services/back.api';
   styleUrl: './hideout-page.component.scss',
 })
 export class HideoutPageComponent {
-  stations$: BehaviorSubject<HideoutItem[]> = new BehaviorSubject<
-    HideoutItem[]
+  stations$: BehaviorSubject<Station[]> = new BehaviorSubject<
+    Station[]
   >([]);
   hidelockedStation: FormControl = new FormControl(null);
 
   constructor(
-    private tarkovApiService: tarkovApiService,
     private backApiService: BackApiService
   ) {
-    this.tarkovApiService
-      .getHideoutStations()
-      .then((data: HideoutItem) => {
-        this.stations$.next(data.hideoutStations);
-      })
-      .catch((e) => console.error(e));
-  }
+    // this.tarkovApiService
+    //   .getHideoutStations()
+    //   .then((data: HideoutItem) => {
+    //     this.stations$.next(data.hideoutStations);
+    //   })
+    //   .catch((e) => console.error(e));
 
-  ngOnInit(): void {
     this.backApiService.loadAllStationsByLvl(1).subscribe({
       next: (stations) => {
-        stations.forEach((station : any) => {
-          console.log(station);
+        stations.forEach((station : Station) => {
+          this.stations$.next(stations)
           
         })
       },
@@ -58,8 +52,12 @@ export class HideoutPageComponent {
     });
   }
 
-  isLocked(station: HideoutItem): boolean {
-    return station.levels[0].stationLevelRequirements.length > 0 ? false : true;
+  ngOnInit(): void {
+   
+  }
+
+  isLocked(station: Station): boolean {
+    return station.stationLvlRequirements.length > 0 ? false : true;
   }
 
   showAllStation() {

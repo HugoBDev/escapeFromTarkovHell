@@ -1,10 +1,11 @@
 export interface Station {
-    id:           number;
-    uid:          string;
-    name:         string;
-    level:        number;
-    imageLink:    string;
-    stationItems: StationItem[];
+    id:                     number;
+    uid:                    string;
+    name:                   string;
+    level:                  number;
+    imageLink:              string;
+    stationItems:           StationItem[];
+    stationLvlRequirements: StationLvlRequirement[];
 }
 
 export interface StationItem {
@@ -20,4 +21,11 @@ export interface Item {
     uid:      string;
     name:     string;
     iconLink: string;
+}
+
+export interface StationLvlRequirement {
+    id:                  number;
+    requiredStationId:   string;
+    requiredStationName: string;
+    level:               number;
 }
