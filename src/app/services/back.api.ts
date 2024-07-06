@@ -83,4 +83,9 @@ export class BackApiService {
       })
     )
   }
+
+
+  loadAllStationsByLvl(level : number ): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/stations/level/${level}`);
+  }
 }

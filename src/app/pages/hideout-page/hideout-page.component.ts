@@ -10,6 +10,7 @@ import { LoaderComponent } from '../../components/loader/loader.component';
 import { HideoutStationItemComponent } from '../../components/hideout-station-item/hideout-station-item.component';
 import { BehaviorSubject } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { BackApiService } from '../../services/back.api';
 
 @Component({
   selector: 'app-hideout-page',
@@ -33,13 +34,25 @@ export class HideoutPageComponent {
   >([]);
   hidelockedStation: FormControl = new FormControl(null);
 
-  constructor(private tarkovApiService: tarkovApiService) {
+  constructor(
+    private tarkovApiService: tarkovApiService,
+    private backApiService: BackApiService
+  ) {
     this.tarkovApiService
       .getHideoutStations()
       .then((data: HideoutItem) => {
         this.stations$.next(data.hideoutStations);
       })
       .catch((e) => console.error(e));
+  }
+
+  ngOnInit(): void {
+    this.backApiService.loadAllStationsByLvl(1).subscribe({
+      next: (items) => {
+        console.log(items);
+      },
+      error: (e) => console.error(e),
+    });
   }
 
   isLocked(station: HideoutItem): boolean {

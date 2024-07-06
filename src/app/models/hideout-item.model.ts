@@ -9,6 +9,17 @@ export interface HideoutItem {
     currentStationLvl : number
 }
 
+export interface Station {
+    id : number ,
+    imageLink : string,
+    level : number
+    name : string,
+    uid : string,
+    
+
+
+}
+
 export interface Level {
     level:                    number;
     stationLevelRequirements: StationLevelRequirement[];
