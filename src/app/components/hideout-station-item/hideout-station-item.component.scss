@@ -13,7 +13,7 @@
   @extend .hideout-item;
   border: 2px solid $primary-100;
   color: #929292;
-
+  cursor: not-allowed;
   img {
     opacity: 0.5;
   }

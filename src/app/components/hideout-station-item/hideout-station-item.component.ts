@@ -13,23 +13,19 @@ import { Station } from '../../models/tarkovApi.model';
   styleUrl: './hideout-station-item.component.scss',
   template: `
     <div
-      (mouseenter)="startShowTooltip()"
+      (mouseenter)="!isBuildable(station) ? startShowTooltip() : null"
       (mouseleave)="hideTooltip()"
+      (click)="goToStation()"
       [ngClass]="
-        isBuildable(station) ? 'disabled-hideout-item' :'active-hideout-item' 
+        isBuildable(station) ? 'disabled-hideout-item' : 'active-hideout-item'
       "
-      [routerLink]="['/station-details', station.id]"
-  >
-  
-
-    <!-- @if(station.stationLvlRequirements.length > 0){
-      <app-station-item-tooltip [visible]="visible"
-        [level]="station.levels[station.currentStationLvl]"
+    >
+      @if(station.stationItems.length > 0){
+      <app-station-item-tooltip
+        [visible]="visible"
+        [station]="station"
       ></app-station-item-tooltip>
-    } -->
-
-
-      @if(!isBuildable(station)){
+      } @if(!isBuildable(station)){
       <div class="current-lvl">
         {{ station.level }}
       </div>
@@ -41,25 +37,28 @@ import { Station } from '../../models/tarkovApi.model';
 })
 export class HideoutStationItemComponent {
   @Input() station!: Station;
-  visible:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false)
+  visible: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(
-   private router : Router
-  ) {}
- 
+  constructor(private router: Router) {}
+
   private hoverTimeout: any;
+
+  goToStation() {
+    if (!this.isBuildable(this.station)) {
+      this.router.navigate(['/station-details', this.station.id]);
+    }
+  }
 
   startShowTooltip() {
     this.clearHoverTimeout();
     this.hoverTimeout = setTimeout(() => {
-        this.visible.next(true)      
-    }, 500); // délai 
+      this.visible.next(true);
+    }, 500); // délai
   }
-  
-  hideTooltip() {
-    this.visible.next(false)    
-    this.clearHoverTimeout();
 
+  hideTooltip() {
+    this.visible.next(false);
+    this.clearHoverTimeout();
   }
 
   private clearHoverTimeout() {
@@ -79,17 +78,14 @@ export class HideoutStationItemComponent {
   // }
 
   isBuildable(station: Station): boolean {
-     const isBuildable = station.stationLvlRequirements.length > 0;
-
+    const isBuildable = station.stationLvlRequirements.length > 0;
     return isBuildable;
   }
-
-  
 
   ngOnInit(): void {
     // TODO Station Current Level est faux ici ! a changer par la vrai valeur en bdd.
     // car ici la valeur de station.currentStationLvl n'est pas informé et donc
     // retourne undefined !
-    // this.station.currentStationLvl = 0;    
+    // this.station.currentStationLvl = 0;
   }
 }
