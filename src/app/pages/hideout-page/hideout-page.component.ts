@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BackApiService } from '../../services/back.api';
 import { Item, Station } from '../../models/tarkovApi.model';
+import { UserDataService } from '../../services/user.data.service';
 
 @Component({
   selector: 'app-hideout-page',
@@ -33,7 +34,8 @@ export class HideoutPageComponent {
   hidelockedStation: FormControl = new FormControl(null);
 
   constructor(
-    private backApiService: BackApiService
+    private backApiService: BackApiService,
+    private userDataService : UserDataService
   ) {
 
     this.backApiService.loadAllStationsByLvl(1).subscribe({
@@ -49,7 +51,7 @@ export class HideoutPageComponent {
   }
 
   ngOnInit(): void {
-   
+   this.userDataService.getUserData()
   }
 
   isLocked(station: Station): boolean {

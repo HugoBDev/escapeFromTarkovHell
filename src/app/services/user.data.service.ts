@@ -1,16 +1,22 @@
 import { Injectable } from "@angular/core";
 import { User } from "../models/user.model";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
 })
 
 export class UserDataService {
-    constructor() { }       
+    constructor(private router: Router) { }       
 
-    getUserData() : Promise<User>  {
+    getUserData() : User | null {
         const tarkovUserData = sessionStorage.getItem('tarkovUser');
-        return tarkovUserData ? JSON.parse(tarkovUserData) : null;
+        if(!tarkovUserData) {
+            this.router.navigate(['/login']);
+            return null
+        } else {
+            return JSON.parse(tarkovUserData);
+        }
     }
 
 
