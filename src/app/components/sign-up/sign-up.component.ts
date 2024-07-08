@@ -64,8 +64,6 @@ export class SignUpComponent {
         } else {
           const elements:HTMLCollectionOf<HTMLInputElement> =  document.getElementsByClassName('input') as HTMLCollectionOf<HTMLInputElement>
           if(elements && elements.length > 0) {
-            console.log(elements)
-            elements.item;
             // itérer sur les éléments et ajouter une classe
             for(let i = 0; i < elements.length; i++) {
               elements.item(i)!.classList.add('error'); 
