@@ -1,9 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 $dark-color: #202020;
 $primary: #c28c59;
+$primary-200: #544f49;
 $primary-100: #9f8d7c;
 $primary-050: #e8be6b;
 $light-color: #e5d6c8;
+$danger-color: #a13514;
 
 //  TAILLE DE L'ECRAN EN <= à 360px
 
@@ -27,6 +29,14 @@ button {
   &:focus {
     outline: none;
   }
+
+
+  &:disabled{
+    background: $primary-200;
+    cursor: not-allowed;
+    color: $dark-color;
+  }
+
   &:active {
     background: $primary-100;
   }
@@ -67,6 +77,10 @@ input[type="email"] {
   &:focus {
     outline: none;
     border: 1px solid $primary-050;
+  }
+
+  &.error{
+    border: 1px solid $danger-color !important;
   }
 }
 

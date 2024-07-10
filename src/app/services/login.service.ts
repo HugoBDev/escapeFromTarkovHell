@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { environnement } from '../../../.env/env';
 import { User } from '../models/user.model';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {
   BehaviorSubject,
   Observable,
@@ -28,19 +28,25 @@ export class LoginService {
     return this.http.post(`${this.BASE_URL}/auth/login`, user);
   }
 
-  login(user: User) {
-    this.getToken(user).subscribe({
+  login(user: User):Promise<any> {
+    return new Promise((resolve, reject) => this.getToken(user).subscribe({
       next: (res) => {
         sessionStorage.setItem('tarkovToken', res.token);
         this.getUserStatus().subscribe({
           next: () => {
             this.router.navigate(['']), console.log('login complete');
             this.userLogged.next(true)
+            resolve('login complete');
           },
-          error: (e) => console.error(e),
+          error: (e:HttpErrorResponse) => {
+            reject(e)
+          },
         });
       },
-    });
+      error: (e:HttpErrorResponse) => {
+        reject(e)
+      },
+    }))
   }
 
   isLogged(): boolean {

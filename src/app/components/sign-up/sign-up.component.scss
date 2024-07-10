@@ -1,2 +1,35 @@
 @import "../../../styles.scss";
+@import '../sign-in/sign-in.component.scss';
 
+#security-checker {
+    
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: inherit;
+
+  #security-advice {
+    color: $primary-050;
+    font-size: 12px;
+    width: 100%;
+    flex-grow: 1;
+  }
+
+  #pwd-checker-bar {
+    height: 8px;
+    border: 1px solid $primary;
+    display: flex;
+    align-items: center;
+    padding-left: 1%;
+    gap: 1%;
+    .progress-element {
+      width: 19%;
+      height: 50%;
+      background: $primary;
+    }
+  }
+}
+
+.advice-appear {
+    animation: error-appear 0.5s ease-in forwards;
+}

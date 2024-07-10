@@ -22,6 +22,7 @@ import { UserDataService } from '../../services/user.data.service';
     CartComponent,
     HideoutStationItemComponent,
     ReactiveFormsModule,
+    LoaderComponent
   ],
   templateUrl: './hideout-page.component.html',
   styleUrl: './hideout-page.component.scss',
