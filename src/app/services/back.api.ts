@@ -24,18 +24,12 @@ export class BackApiService {
     this.loadInitialCart()
   }
 
-  addToCart(itemId : number, quantity : number): Observable<any> {
-    const user: User | null = this.userDataService.getUserData();
+  addToCart(itemId: number, quantity: number): Observable<any> {
     return this.http
-      .post<Item>(`${this.apiUrl}/user_cart/add`, { itemId, quantity, user })
+      .post<Item>(`${this.apiUrl}/user_cart/add`, { itemId, quantity })
       .pipe(
-        tap((newItem) => {
-          const currentItems = this.cartItemsSubject.value;
-          console.log('current items before update: ', currentItems);
-
-          const updatedItems = [...currentItems, newItem];
-          this.cartItemsSubject.next(updatedItems);
-          console.log('updated items: ', updatedItems);
+        tap(() => {
+          this.refreshCart();
         })
       );
   }
@@ -47,8 +41,6 @@ export class BackApiService {
         console.log(stationItems);
         
         stationItems.forEach((item: any) => {
-          console.log(item.item);
-
           this.cartItemsSubject.next([
             ...this.cartItemsSubject.value,
             item.item,
@@ -59,33 +51,44 @@ export class BackApiService {
     });
   }
 
-  getCart(): Observable<Item[]> {
-    console.log('ici getCart()',this.cartItemsSubject.value);
-    
+  refreshCart(): void {
+    const user: User | null = this.userDataService.getUserData();
+    if (user) {
+      this.http.get<any>(`${this.apiUrl}/user_cart/${user.id}`).subscribe({
+        next: (stationItems: StationItem[]) => {
+          const cartItems = stationItems.map(item => item.item);
+          this.cartItemsSubject.next(cartItems);
+        },
+        error: (e) => console.error('Error refreshing cart:', e),
+      });
+    }
+  }
+
+  getCart(): Observable<Item[]> {    
     return this.cartItems$;
   }
 
-  deleteUserCartItem(itemId : number): Observable<any> {
+  deleteUserCartItem(itemId: number): Observable<any> {
     return this.http
       .delete<any>(`${this.apiUrl}/user_cart/${itemId}`)
       .pipe(
-        map(() => {
-          //Permet de laisser à l'animation le temps de se jouer//
-          setTimeout(() => {
-            const currentItems = this.cartItemsSubject.value.filter(
-              (item) => item.id !== itemId
-            );
-            this.cartItemsSubject.next(currentItems);
-          }, 1000);
+        tap(() => {
+          setInterval(() => {
+            
+            this.refreshCart();
+          }, 2000)
         })
       );
   }
 
   deleteUserCart(): Observable<any> {
-    const user :  any = this.userDataService.getUserData();
-    return this.http.delete<any>(`${this.apiUrl}/user-items/${user.id}`).pipe(
-      map(() => {
-        this.cartItemsSubject.next([]);
+    const user: any = this.userDataService.getUserData();
+    return this.http.delete<any>(`${this.apiUrl}/user-cart/${user.id}`).pipe(
+      tap(() => {
+    
+          
+          this.refreshCart();
+      
       })
     );
   }

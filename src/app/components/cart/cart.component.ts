@@ -18,7 +18,7 @@ export class CartComponent {
   constructor( private backApiService: BackApiService) {}
 
   ngOnInit(): void {
-    this.backApiService.getCart().subscribe({
+    this.backApiService.cartItems$.subscribe({
       next: (items) => {
         this.items = items;
       },

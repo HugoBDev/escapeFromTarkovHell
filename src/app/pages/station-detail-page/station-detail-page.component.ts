@@ -16,7 +16,7 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 export class StationDetailPageComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   stationId : number = 0
-  station : Station | null = null
+  station! : Station 
   
   itemCart: Item[] = [];
   constructor(private  backApiService: BackApiService) {
@@ -26,44 +26,31 @@ export class StationDetailPageComponent {
   ngOnInit(): void {
    this.backApiService.loadStationRequirementById(this.stationId).subscribe({
      next: (station) => {
+      console.log(station);
+      
       this.station = station;
      
      },
      error: (e) =>
        console.error("Erreur lors de la création de la requête:", e),
    })
-
-    this.showCart();
   }
 
  
   addToCart(itemId : number, quantity : number){
     this.backApiService.addToCart(itemId, quantity).subscribe({
       next: (res) => {
-        console.log(res);
+        console.log(res)
+        this.showCart()
         
       }
     })
   }
-  // addToCart(item : any){
-  //   console.log(item);
-  //   const id = item.item.id;
-  //   const user = this.loginService.getUserData();
-    
-  //   this.backApiService.addToCart(id, user).subscribe({
-  //     next: (response) => {       
-  //       console.log(id);
-  //       console.log("l'objet à bien été ajouté au panier:",id);
-  //       this.showCart()
-  //     },
-  //     error: (e) =>
-  //       console.error("cette object n'a pas pu etre ajouté au panier:", e),
-  //   })
-  // }
+
 
   showCart() {
     
-      this.backApiService.getCart().subscribe({
+      this.backApiService.cartItems$.subscribe({
         next: (items) => {
           this.itemCart = items;
         },

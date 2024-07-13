@@ -8,11 +8,11 @@
                 <p>(Niveau :{{station.level}})</p>
             </div>
             <div class="item-required">
-               @for(item of station.stationItems ; track item){
-                <div class="items" (click)="addToCart(item.id, item.quantity)">
-                  <img [src]=" item.item.iconLink" alt="">
-                  {{ item.item.name}}
-                  <p>x {{ item.quantity}}</p>
+               @for(stationItem of station.stationItems ; track stationItem){
+                <div class="items" (click)="addToCart(stationItem.item.id, stationItem.quantity)">
+                  <img [src]=" stationItem.item.iconLink" alt="">
+                  {{ stationItem.item.name}}
+                  <p>x {{ stationItem.quantity}}</p>
                 </div>
                }
             </div>
