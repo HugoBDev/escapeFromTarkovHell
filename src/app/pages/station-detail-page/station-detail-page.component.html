@@ -9,7 +9,7 @@
             </div>
             <div class="item-required">
                @for(item of station.stationItems ; track item){
-                <div class="items">
+                <div class="items" (click)="addToCart(item.id, item.quantity)">
                   <img [src]=" item.item.iconLink" alt="">
                   {{ item.item.name}}
                   <p>x {{ item.quantity}}</p>

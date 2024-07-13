@@ -1,6 +1,6 @@
 <div id="navbar">
     @if(!(isLogged | async)){
-        <div>
+        <div [routerLink]="['/hideout']">
             Tarkov's Hell
         </div>
         <div>

@@ -1,16 +1,14 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component,  inject } from '@angular/core';
 import {
-  HideoutItem,
+  
   Item,
  
 } from '../../models/hideout-item.model';
 import { AsyncPipe } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
 import { BackApiService } from '../../services/back.api';
-import { LoginService } from '../../services/login.service';
 import { Station } from '../../models/tarkovApi.model';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-station-detail-page',
@@ -25,7 +23,7 @@ export class StationDetailPageComponent {
   station : Station | null = null
   
   itemCart: Item[] = [];
-  constructor(private  backApiService: BackApiService, private loginService : LoginService) {
+  constructor(private  backApiService: BackApiService) {
      this.stationId = this.route.snapshot.params['id'];
   }
 
@@ -43,7 +41,14 @@ export class StationDetailPageComponent {
   }
 
  
-
+  addToCart(itemId : number, quantity : number){
+    this.backApiService.addToCart(itemId, quantity).subscribe({
+      next: (res) => {
+        console.log(res);
+        
+      }
+    })
+  }
   // addToCart(item : any){
   //   console.log(item);
   //   const id = item.item.id;

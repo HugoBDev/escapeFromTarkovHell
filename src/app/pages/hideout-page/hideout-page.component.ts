@@ -7,8 +7,9 @@ import { HideoutStationItemComponent } from '../../components/hideout-station-it
 import { BehaviorSubject } from 'rxjs';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { BackApiService } from '../../services/back.api';
-import { Item, Station } from '../../models/tarkovApi.model';
+import {  Station } from '../../models/tarkovApi.model';
 import { UserDataService } from '../../services/user.data.service';
+import { LoaderComponent } from '../../components/loader/loader.component';
 
 @Component({
   selector: 'app-hideout-page',

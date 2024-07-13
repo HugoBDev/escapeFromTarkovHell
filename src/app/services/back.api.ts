@@ -5,6 +5,7 @@ import { environnement } from '../../../.env/env';
 import { User } from '../models/user.model';
 import { Item } from '../models/hideout-item.model';
 import { UserDataService } from './user.data.service';
+import { StationItem } from '../models/tarkovApi.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,12 +22,13 @@ export class BackApiService {
     @Inject(forwardRef(() => UserDataService))
     private userDataService: UserDataService
   ) {
+    this.loadInitialCart()
   }
 
-  addToCart(itemTarkovId: string): Observable<any> {
-    const user: any = this.userDataService.getUserData();
+  addToCart(itemId : number, quantity : number): Observable<any> {
+    const user: User | null = this.userDataService.getUserData();
     return this.http
-      .post<Item>(`${this.apiUrl}/user-items`, { itemTarkovId, user })
+      .post<Item>(`${this.apiUrl}/user_cart/add`, { itemId, quantity, user })
       .pipe(
         tap((newItem) => {
           const currentItems = this.cartItemsSubject.value;
@@ -41,10 +43,12 @@ export class BackApiService {
   }
 
   private loadInitialCart(): void {
-    const user: any = this.userDataService.getUserData();
-    this.http.get<any>(`${this.apiUrl}/user-items/${user.id}`).subscribe({
-      next: (items) => {
-        items.userItems.forEach((item: any) => {
+    const user: User | null = this.userDataService.getUserData();
+    this.http.get<any>(`${this.apiUrl}/user_cart/${user?.id}`).subscribe({
+      next: (stationItems : StationItem[]) => {
+        console.log(stationItems);
+        
+        stationItems.forEach((item: any) => {
           console.log(item.item);
 
           this.cartItemsSubject.next([
@@ -58,6 +62,8 @@ export class BackApiService {
   }
 
   getCart(): Observable<Item[]> {
+    console.log('ici getCart()',this.cartItemsSubject.value);
+    
     return this.cartItems$;
   }
 

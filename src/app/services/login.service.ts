@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { environnement } from '../../../.env/env';
 import { User } from '../models/user.model';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -8,13 +8,13 @@ import {
   map,
 } from 'rxjs';
 import { Router } from '@angular/router';
-import { BackApiService } from './back.api';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class LoginService {
-  constructor(private http: HttpClient, private router: Router, private injector: Injector) {}
+  constructor(private http: HttpClient, private router: Router) {}
   BASE_URL = environnement.apiUrl;
   public userLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
     false
