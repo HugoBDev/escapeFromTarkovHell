@@ -1,5 +1,4 @@
 import { Component, Input } from "@angular/core";
-import { Level } from "../../../models/hideout-item.model";
 import { BehaviorSubject } from "rxjs";
 import { AsyncPipe, NgClass } from "@angular/common";
 import { Station } from "../../../models/tarkovApi.model";

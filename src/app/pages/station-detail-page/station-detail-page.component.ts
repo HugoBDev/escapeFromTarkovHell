@@ -1,13 +1,9 @@
 import { Component,  inject } from '@angular/core';
-import {
-  
-  Item,
- 
-} from '../../models/hideout-item.model';
+
 import { AsyncPipe } from '@angular/common';
 import { CartComponent } from '../../components/cart/cart.component';
 import { BackApiService } from '../../services/back.api';
-import { Station } from '../../models/tarkovApi.model';
+import { Item, Station } from '../../models/tarkovApi.model';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({

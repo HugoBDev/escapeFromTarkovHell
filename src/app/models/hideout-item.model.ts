@@ -1,13 +1,13 @@
 
 
-export interface HideoutItem {
-    hideoutStations: HideoutItem[];
-    id:        string;
-    name:      string;
-    imageLink: string;
-    levels:    Level[];
-    currentStationLvl : number
-}
+// export interface HideoutItem {
+//     hideoutStations: HideoutItem[];
+//     id:        string;
+//     name:      string;
+//     imageLink: string;
+//     levels:    Level[];
+//     currentStationLvl : number
+// }
 
 export interface Station {
     id : number ,
@@ -20,24 +20,24 @@ export interface Station {
 
 }
 
-export interface Level {
-    level:                    number;
-    stationLevelRequirements: StationLevelRequirement[];
-    itemRequirements:         ItemRequirement[];
-}
+// export interface Level {
+//     level:                    number;
+//     stationLevelRequirements: StationLevelRequirement[];
+//     itemRequirements:         ItemRequirement[];
+// }
 
-export interface ItemRequirement {
-    id: string ;
-    quantity: number;
-    item:     Item;
-}
+// export interface ItemRequirement {
+//     id: string ;
+//     quantity: number;
+//     item:     Item;
+// }
 
-export interface Item {
-    tarkovId : string;
-    quantity : ItemRequirement["quantity"]
-    name:     string;
-    iconLink: string;
-}
+// export interface Item {
+//     tarkovId : string;
+//     quantity : ItemRequirement["quantity"]
+//     name:     string;
+//     iconLink: string;
+// }
 
 
 

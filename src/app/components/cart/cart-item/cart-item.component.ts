@@ -4,8 +4,8 @@ import {
   Input,
   ViewChild,
 } from '@angular/core';
-import { Item } from '../../../models/hideout-item.model';
 import { BackApiService } from '../../../services/back.api';
+import { Item } from '../../../models/tarkovApi.model';
 
 @Component({
   selector: 'app-cart-item',
@@ -15,7 +15,7 @@ import { BackApiService } from '../../../services/back.api';
   template: `
     <div id="cart-item">
       <div #cartWrapper id="cart-wrapper">
-        <p>x{{ item.quantity }}</p>
+        <!-- <p>x{{ item.quantity }}</p> -->
         <img [src]="item.iconLink" [alt]="item.name + ' icon.'" />
         <div>
           <div #itemName id="name">
@@ -25,7 +25,7 @@ import { BackApiService } from '../../../services/back.api';
           <div id="goal">Vent lvl 2</div>
         </div>
         <button id="found-btn" (click)="foundClick()">found!</button>
-        <button class="stealth" (click)="deleteClick(item.tarkovId)">delete</button>
+        <button class="stealth" (click)="deleteClick(item.id)">delete</button>
       </div>
     </div>
   `,
@@ -38,15 +38,15 @@ export class CartItemComponent {
 
   constructor( private backApiService: BackApiService) {}
 
-  deleteClick(tarkovItemId : string) {
-    console.log(tarkovItemId);
+  deleteClick(itemId : number) {
+    console.log(this.item);
     
     
     
     // 1- Cible les éléments à animer
     const cartElement: HTMLElement = this.cartItemRef.nativeElement;
 
-    this.backApiService.deleteUserItem(tarkovItemId).subscribe({
+    this.backApiService.deleteUserCartItem(itemId).subscribe({
       next: (value) => {
         // 2 - ajoute là class 'animation sur l'element ciblé à animer
         cartElement.classList.add('deleted');

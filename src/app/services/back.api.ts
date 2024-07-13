@@ -3,9 +3,8 @@ import { Inject, Injectable, forwardRef } from '@angular/core';
 import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { environnement } from '../../../.env/env';
 import { User } from '../models/user.model';
-import { Item } from '../models/hideout-item.model';
 import { UserDataService } from './user.data.service';
-import { StationItem } from '../models/tarkovApi.model';
+import { Item, StationItem } from '../models/tarkovApi.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +35,6 @@ export class BackApiService {
 
           const updatedItems = [...currentItems, newItem];
           this.cartItemsSubject.next(updatedItems);
-
           console.log('updated items: ', updatedItems);
         })
       );
@@ -67,16 +65,15 @@ export class BackApiService {
     return this.cartItems$;
   }
 
-  deleteUserItem(tarkovId: string): Observable<any> {
-    const user: any = this.userDataService.getUserData();
+  deleteUserCartItem(itemId : number): Observable<any> {
     return this.http
-      .delete<any>(`${this.apiUrl}/user-items/${user.id}/${tarkovId}`)
+      .delete<any>(`${this.apiUrl}/user_cart/${itemId}`)
       .pipe(
         map(() => {
           //Permet de laisser à l'animation le temps de se jouer//
           setTimeout(() => {
             const currentItems = this.cartItemsSubject.value.filter(
-              (item) => item.tarkovId !== tarkovId
+              (item) => item.id !== itemId
             );
             this.cartItemsSubject.next(currentItems);
           }, 1000);

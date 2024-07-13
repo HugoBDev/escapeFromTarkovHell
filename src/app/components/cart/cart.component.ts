@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { Item } from '../../models/hideout-item.model';
 import { NgClass } from '@angular/common';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { BackApiService } from '../../services/back.api';
+import { Item } from '../../models/tarkovApi.model';
 
 @Component({
   selector: 'app-cart',
