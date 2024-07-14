@@ -3,6 +3,7 @@ import { RouterLink, RouterModule, RouterOutlet } from '@angular/router';
 
 import { NgClass } from '@angular/common';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BackApiService } from './services/back.api';
 
 @Component({
   selector: 'app-root',
@@ -12,5 +13,5 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
- 
+
 }

@@ -5,6 +5,7 @@ import { CartComponent } from '../../components/cart/cart.component';
 import { BackApiService } from '../../services/back.api';
 import { Item, Station } from '../../models/tarkovApi.model';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-station-detail-page',
@@ -19,7 +20,7 @@ export class StationDetailPageComponent {
   station! : Station 
   
   itemCart: Item[] = [];
-  constructor(private  backApiService: BackApiService) {
+  constructor(private  cartService: CartService, private backApiService: BackApiService) {
      this.stationId = this.route.snapshot.params['id'];
   }
 
@@ -38,7 +39,7 @@ export class StationDetailPageComponent {
 
  
   addToCart(itemId : number, quantity : number){
-    this.backApiService.addToCart(itemId, quantity).subscribe({
+    this.cartService.addToCart(itemId, quantity).subscribe({
       next: (res) => {
         console.log(res)
         this.showCart()
@@ -50,7 +51,7 @@ export class StationDetailPageComponent {
 
   showCart() {
     
-      this.backApiService.cartItems$.subscribe({
+      this.cartService.cartItems$.subscribe({
         next: (items) => {
           this.itemCart = items;
         },

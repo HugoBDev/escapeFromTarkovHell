@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { BackApiService } from '../../../services/back.api';
 import { Item } from '../../../models/tarkovApi.model';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-cart-item',
@@ -36,7 +37,7 @@ export class CartItemComponent {
   @ViewChild('crossOut', { static: true }) crossOutRef!: ElementRef;
   @ViewChild('itemName', { static: true }) itemNameRef!: ElementRef;
 
-  constructor( private backApiService: BackApiService) {}
+  constructor( private cartService: CartService) {}
 
   deleteClick(itemId : number) {
     console.log(this.item);
@@ -46,7 +47,7 @@ export class CartItemComponent {
     // 1- Cible les éléments à animer
     const cartElement: HTMLElement = this.cartItemRef.nativeElement;
 
-    this.backApiService.deleteUserCartItem(itemId).subscribe({
+    this.cartService.deleteUserCartItem(itemId).subscribe({
       next: (value) => {
         // 2 - ajoute là class 'animation sur l'element ciblé à animer
         cartElement.classList.add('deleted');

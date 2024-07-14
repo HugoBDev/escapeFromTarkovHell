@@ -3,6 +3,7 @@ import { NgClass } from '@angular/common';
 import { CartItemComponent } from './cart-item/cart-item.component';
 import { BackApiService } from '../../services/back.api';
 import { Item } from '../../models/tarkovApi.model';
+import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -15,10 +16,10 @@ export class CartComponent {
 
   items: Item[] = [];
 
-  constructor( private backApiService: BackApiService) {}
+  constructor( private backApiService: BackApiService, private cartService: CartService) {}
 
   ngOnInit(): void {
-    this.backApiService.cartItems$.subscribe({
+    this.cartService.cartItems$.subscribe({
       next: (items) => {
         this.items = items;
       },
@@ -29,8 +30,8 @@ export class CartComponent {
   }
 
   clearCart(){
-    this.backApiService.deleteUserCart().subscribe({
-      next: () => {
+    this.cartService.deleteUserCart().subscribe({
+      next: (res) => {        
         console.log('la liste à été clear');
       },
       error: (e) => console.error(e),

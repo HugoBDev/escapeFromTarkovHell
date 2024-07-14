@@ -1,5 +1,5 @@
 <div id="navbar">
-    @if(!(isLogged | async)){
+    @if(!(isLogged$ | async )){
         <div [routerLink]="['/hideout']">
             Tarkov's Hell
         </div>
@@ -21,19 +21,3 @@
     }
     
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
