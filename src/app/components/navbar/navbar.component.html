@@ -4,8 +4,8 @@
             Tarkov's Hell
         </div>
         <div>
-            <button class="sign-in" routerLink="/login">Sign in</button>
-            <button class="stealth"routerLink="/login/register">Sign up</button>
+            <button class="sign-in" [routerLink]="['/login']">Sign in</button>
+            <button class="stealth"[routerLink]="['/login/register']">Sign up</button>
         </div>
     }@else {
         <div>
